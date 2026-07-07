@@ -260,6 +260,7 @@ export default function Clientes() {
                     {biz.mediaType === "video" ? (
                       <video
                         src={biz.mediaSrc}
+                        aria-label={`Video de ${biz.name}`}
                         autoPlay
                         loop
                         muted
@@ -564,6 +565,7 @@ function BusinessRow({ business, index, totalBusinesses, scrollYProgress, TOTAL_
             {business.mediaType === "video" ? (
               <video
                 src={business.mediaSrc}
+                aria-label={`Video de ${business.name}`}
                 autoPlay
                 loop
                 muted

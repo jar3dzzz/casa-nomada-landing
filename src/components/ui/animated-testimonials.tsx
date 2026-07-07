@@ -27,6 +27,30 @@ export interface AnimatedTestimonialsProps {
   className?: string
 }
 
+// Animation variants
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+}
+
 export function AnimatedTestimonials({
   title = "Loved by the community",
   subtitle = "Don't just take our word for it. See what developers and companies have to say about our starter template.",
@@ -44,29 +68,7 @@ export function AnimatedTestimonials({
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
   const controls = useAnimation()
 
-  // Animation variants
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  }
+  // Moved variants outside component
 
   // Trigger animations when section comes into view
   useEffect(() => {

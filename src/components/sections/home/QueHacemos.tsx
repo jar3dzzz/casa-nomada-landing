@@ -189,6 +189,7 @@ function BentoCard({ service, index }: { service: ServiceItem; index: number }) 
           <video
             ref={videoRef}
             src={service.mediaSrc}
+            aria-label={`Video descriptivo de ${service.title}`}
             loop
             muted
             playsInline

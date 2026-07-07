@@ -4,6 +4,27 @@ import Image from "next/image";
 import { m, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef } from "react";
 
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const textRevealVariants: Variants = {
+  hidden: { opacity: 0, y: "100%" },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.21, 0.47, 0.32, 0.98],
+    }
+  },
+};
+
 export default function Conocenos() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -13,26 +34,7 @@ export default function Conocenos() {
 
   const yImage = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
-  const containerVariants: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const textRevealVariants: Variants = {
-    hidden: { opacity: 0, y: "100%" },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.21, 0.47, 0.32, 0.98],
-      }
-    },
-  };
+  // Moved variants outside component
 
   return (
     <section ref={containerRef} className="relative w-full overflow-hidden bg-white py-28 lg:py-40 border-t border-slate-100">

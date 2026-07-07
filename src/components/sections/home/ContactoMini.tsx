@@ -73,6 +73,7 @@ export default function ContactoMini() {
                     <div className="relative">
                       <input
                         type="text"
+                        aria-label="Nombre completo"
                         placeholder="Nombre completo"
                         className="w-full bg-transparent border-b border-slate-300 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 transition-colors"
                       />
@@ -80,6 +81,7 @@ export default function ContactoMini() {
                     <div className="relative">
                       <input
                         type="email"
+                        aria-label="Correo electrónico"
                         placeholder="Correo electrónico"
                         className="w-full bg-transparent border-b border-slate-300 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 transition-colors"
                       />
@@ -89,6 +91,7 @@ export default function ContactoMini() {
                   <div className="relative">
                     <textarea
                       rows={3}
+                      aria-label="Cuéntanos un poco sobre tu proyecto"
                       placeholder="Cuéntanos un poco sobre tu proyecto..."
                       className="w-full bg-transparent border-b border-slate-300 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 transition-colors resize-none"
                     ></textarea>

@@ -241,6 +241,7 @@ export default function Servicios() {
                   {service.detailMediaType === "video" ? (
                     <video
                       src={service.detailImage}
+                      aria-label={`Video de ${service.title}`}
                       autoPlay
                       loop
                       muted

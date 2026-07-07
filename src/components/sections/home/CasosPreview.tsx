@@ -162,6 +162,7 @@ export default function CasosPreview() {
                 <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-stone-200 shadow-lg">
                   <video
                     src={study.videoSrc}
+                    aria-label={`Video del caso de ${study.title}`}
                     autoPlay
                     loop
                     muted
