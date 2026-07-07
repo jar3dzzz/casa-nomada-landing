@@ -17,7 +17,7 @@ const floatVariants = {
 
 interface GeometricCircleProps {
   className: string;
-  size: number;2
+  size: number;
   index: number;
 }
 
