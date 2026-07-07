@@ -10,10 +10,10 @@ interface FooterLink {
 interface SocialLink {
   label: string;
   href: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
-const InstagramIcon = (props: any) => (
+const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -29,7 +29,7 @@ const InstagramIcon = (props: any) => (
   </svg>
 );
 
-const LinkedinIcon = (props: any) => (
+const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"

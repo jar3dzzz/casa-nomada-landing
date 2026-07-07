@@ -237,7 +237,7 @@ export default function Servicios() {
 
                 {/* Columna de Imagen */}
                 <div className={`w-full h-[400px] md:h-[500px] lg:h-[700px] relative rounded-3xl overflow-hidden shadow-xl ${isImageRight ? "lg:order-2" : "lg:order-1"}`}>
-                  {/* @ts-ignore - Ignore optional property not existing on all elements */}
+                  {/* @ts-expect-error - Ignore optional property not existing on all elements */}
                   {service.detailMediaType === "video" ? (
                     <video
                       src={service.detailImage}
