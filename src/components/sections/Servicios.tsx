@@ -157,6 +157,7 @@ export default function Servicios() {
                     src={SERVICIOS_DATA[activeServiceIndex].heroImage}
                     alt={SERVICIOS_DATA[activeServiceIndex].title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
                     priority
                   />
@@ -250,6 +251,7 @@ export default function Servicios() {
                       src={service.detailImage}
                       alt={`Detalle de ${service.title}`}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover"
                     />
                   )}

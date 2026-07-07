@@ -271,6 +271,7 @@ export default function Clientes() {
                         src={biz.mediaSrc}
                         alt={biz.name}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover"
                       />
                     )}
@@ -285,6 +286,7 @@ export default function Clientes() {
                           src={biz.logo}
                           alt={`${biz.name} logo`}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-contain object-left brightness-0"
                         />
                       </div>
@@ -517,6 +519,7 @@ function BusinessRow({ business, index, totalBusinesses, scrollYProgress, TOTAL_
                  src={business.logo} 
                  alt={`${business.name} logo`} 
                  fill 
+                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                  className={`object-contain object-left transition-all duration-500 ${business.theme === 'dark' ? 'brightness-0 invert' : 'brightness-0'}`} 
                />
              </div>
@@ -571,7 +574,7 @@ function BusinessRow({ business, index, totalBusinesses, scrollYProgress, TOTAL_
                 src={business.mediaSrc}
                 alt={`${business.name} caso`}
                 fill
-                sizes="(max-width: 1200px) 100vw, 60vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover"
               />
             )}

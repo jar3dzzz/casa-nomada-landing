@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { m } from "framer-motion";
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -53,13 +54,19 @@ const HeroSection = ({ title, subtitle, actions, stats, images, className }: Her
 
           {/* Images */}
           <m.div className="absolute left-[15%] -top-10 h-48 w-48 rounded-3xl bg-white p-2 shadow-lg sm:h-72 sm:w-72" style={{ transformOrigin: 'bottom center' }} variants={imageVariants}>
-            <img src={images[0]} alt="Case Study 1" className="h-full w-full rounded-2xl object-cover" />
+            <div className="relative h-full w-full rounded-2xl overflow-hidden">
+              <Image src={images[0]} alt="Case Study 1" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" priority className="object-cover" />
+            </div>
           </m.div>
           <m.div className="absolute -right-8 top-1/4 h-40 w-40 rounded-3xl bg-white p-2 shadow-lg sm:h-72 sm:w-72" style={{ transformOrigin: 'left center' }} variants={imageVariants}>
-            <img src={images[1]} alt="Case Study 2" className="h-full w-full rounded-2xl object-cover" />
+            <div className="relative h-full w-full rounded-2xl overflow-hidden">
+              <Image src={images[1]} alt="Case Study 2" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" priority className="object-cover" />
+            </div>
           </m.div>
           <m.div className="absolute -left-8 -bottom-10 h-64 w-64 rounded-3xl bg-white p-2 shadow-lg sm:h-68 sm:w-68" style={{ transformOrigin: 'right bottom' }} variants={imageVariants}>
-            <img src={images[2]} alt="Case Study 3" className="h-full w-full rounded-2xl object-cover" />
+            <div className="relative h-full w-full rounded-2xl overflow-hidden">
+              <Image src={images[2]} alt="Case Study 3" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" priority className="object-cover" />
+            </div>
           </m.div>
         </m.div>
       </div>
