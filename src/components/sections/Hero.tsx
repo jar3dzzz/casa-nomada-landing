@@ -228,7 +228,7 @@ export default function Hero() {
                 className="absolute right-0 top-0 w-[85%] h-[80%] rounded-[2.5rem] overflow-hidden bg-stone-200 shadow-2xl z-10"
               >
                 <Image
-                  src="/hero.png"
+                  src="/hero.webp"
                   alt="Dirección de arte Casa Nómada"
                   priority
                   fill
