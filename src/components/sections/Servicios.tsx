@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { m, AnimatePresence } from "framer-motion";
+import { LazyVideo } from "@/components/ui/lazy-video";
 import { ArrowRight, Code, PenTool, Lightbulb, Camera, TrendingUp } from "lucide-react";
 
 // Dummy Data para los Servicios
@@ -239,13 +240,9 @@ export default function Servicios() {
                 <div className={`w-full h-[400px] md:h-[500px] lg:h-[700px] relative rounded-3xl overflow-hidden shadow-xl ${isImageRight ? "lg:order-2" : "lg:order-1"}`}>
 
                   {service.detailMediaType === "video" ? (
-                    <video
+                    <LazyVideo
                       src={service.detailImage}
-                      aria-label={`Video de ${service.title}`}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
+                      ariaLabel={`Video de ${service.title}`}
                       className="w-full h-full object-cover"
                     />
                   ) : (

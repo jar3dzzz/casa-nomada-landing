@@ -4,6 +4,7 @@ import { Sparkles, Users, TrendingUp, Eye, Music } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import HeroSection from "@/components/ui/hero-section-9";
 import CollaboratorsSlider from "@/components/sections/home/CollaboratorsSlider";
+import { LazyVideo } from "@/components/ui/lazy-video";
 import FloatingBackground from "@/components/ui/floating-background";
 
 // Client Wrappers
@@ -177,13 +178,9 @@ export default function Clientes() {
                   {/* Media container */}
                   <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-stone-200 shadow-sm">
                     {biz.mediaType === "video" ? (
-                      <video
+                      <LazyVideo
                         src={biz.mediaSrc}
-                        aria-label={`Video de ${biz.name}`}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
+                        ariaLabel={`Video de ${biz.name}`}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -386,13 +383,9 @@ function BusinessRow({ business, index, totalBusinesses }: BusinessRowProps) {
         <div className="col-span-7 pl-8 pointer-events-auto h-full flex items-center">
           <div className="relative w-full aspect-[16/10] rounded-[2rem] overflow-hidden bg-slate-200/50 shadow-2xl border border-slate-900/5">
             {business.mediaType === "video" ? (
-              <video
+              <LazyVideo
                 src={business.mediaSrc}
-                aria-label={`Video de ${business.name}`}
-                autoPlay
-                loop
-                muted
-                playsInline
+                ariaLabel={`Video de ${business.name}`}
                 className="w-full h-full object-cover"
               />
             ) : (
