@@ -15,7 +15,7 @@ import {
 
 interface Tag {
   label: string;
-  icon: LucideIcon;
+  icon: React.ReactNode;
 }
 
 interface TextPhase {
@@ -51,7 +51,7 @@ const BUSINESSES: Business[] = [
     phases: [
       {
         tags: [
-          { label: "Seasonal Content", icon: Sparkles }
+          { label: "Seasonal Content", icon: <Sparkles className="w-3.5 h-3.5" /> }
         ],
         copy: "Reflejamos la experiencia de laut en lenguaje visual, conectando con su comunidad como nunca antes.",
         metrics: [
@@ -72,13 +72,13 @@ const BUSINESSES: Business[] = [
     phases: [
       {
         tags: [
-          { label: "Community Building", icon: Users }
+          { label: "Community Building", icon: <Users className="w-3.5 h-3.5" /> }
         ],
         copy: "Fomentamos la comunidad digital de 7:QUINCE con contenido que incita la interacción."
       },
       {
         tags: [
-          { label: "IRL community", icon: Music }
+          { label: "IRL community", icon: <Music className="w-3.5 h-3.5" /> }
         ],
         copy: "Creamos sundaze, un evento que impulsa el sentido de comunidad y la cultura de la música house.",
         metrics: [
@@ -97,7 +97,7 @@ const BUSINESSES: Business[] = [
     phases: [
       {
         tags: [
-          { label: "High reach", icon: TrendingUp }
+          { label: "High reach", icon: <TrendingUp className="w-3.5 h-3.5" /> }
         ],
         copy: "Creamos desde 0 la comunidad de madan, logrando que la viralidad se convierta en ventas.",
         metrics: [
@@ -118,7 +118,7 @@ const BUSINESSES: Business[] = [
     phases: [
       {
         tags: [
-          { label: "Visual upgrade", icon: Eye }
+          { label: "Visual upgrade", icon: <Eye className="w-3.5 h-3.5" /> }
         ],
         copy: "Definimos el rumbo visual de unilabor, construyendo una comunicación a la altura de su servicio.",
         secondaryCopy: "Traduciendo procesos de calidad a una imagen clara y profesional."
@@ -232,10 +232,9 @@ export default function Clientes() {
 
                           <div className="flex flex-wrap gap-2">
                             {phase.tags.map((tag, tagIdx) => {
-                              const TagIcon = tag.icon;
                               return (
                                 <span key={tagIdx} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
-                                  <TagIcon className="w-3.5 h-3.5" />
+                                  {tag.icon}
                                   {tag.label}
                                 </span>
                               );
@@ -276,7 +275,12 @@ export default function Clientes() {
       {/* 2. Pinned Sticky Scroll Layout for Desktop (hidden lg:block) */}
       <ClientesScrollController 
         totalSlots={TOTAL_SLOTS} 
-        businessesMapped={BUSINESSES_MAPPED}
+        businessesMapped={BUSINESSES_MAPPED.map(biz => ({
+          id: biz.id,
+          name: biz.name,
+          slotStart: biz.slotStart,
+          slots: biz.slots
+        }))}
         floatingBg={<FloatingBackground />}
         introHero={
           <HeroSection
@@ -433,10 +437,9 @@ function PhaseBlock({ phase, pIdx, business }: PhaseBlockProps) {
 
       <div className="flex flex-wrap gap-2">
         {phase.tags.map((tag, idx) => {
-          const TagIcon = tag.icon;
           return (
             <span key={idx} className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border backdrop-blur-sm transition-colors duration-500 ${business.theme === 'dark' ? 'bg-white/10 border-white/20 text-white' : 'bg-white/60 border-slate-900/5 text-slate-800'}`}>
-              <TagIcon className="w-3.5 h-3.5" />
+              {tag.icon}
               {tag.label}
             </span>
           );
