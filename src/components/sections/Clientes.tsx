@@ -547,6 +547,7 @@ function BusinessRow({ business, index, totalBusinesses, scrollYProgress, TOTAL_
           <div className="mt-8">
             <Link
               href={`/clientes#${business.id}`}
+              prefetch={false}
               className={`inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider transition-colors duration-500 group ${business.theme === 'dark' ? 'text-white hover:text-white/70' : 'text-slate-900 hover:text-slate-600'}`}
             >
               Ver caso completo

@@ -131,6 +131,7 @@ export default function CasosPreview() {
           <m.div variants={fadeUpVariants}>
             <Link
               href="/clientes"
+              prefetch={false}
               className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.1em] text-slate-900 hover:text-slate-600 transition-colors group"
             >
               Ver todos los proyectos
@@ -156,7 +157,7 @@ export default function CasosPreview() {
               {/* Geometric frame decoration */}
               <CardGeometry variant={index === 0 ? "left" : "right"} />
 
-              <Link href={`/clientes#${study.id}`} className="group block relative z-10">
+              <Link href={`/clientes#${study.id}`} prefetch={false} className="group block relative z-10">
                 {/* Video Container */}
                 <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-stone-200 shadow-lg">
                   <video

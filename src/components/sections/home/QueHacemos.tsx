@@ -66,7 +66,7 @@ const SERVICES: ServiceItem[] = [
     title: "Sitios Web",
     description: "Diseñamos y desarrollamos plataformas web rápidas, responsivas y de estética impecable.",
     icon: Globe,
-    mediaSrc: "/work-media/work-8.png",
+    mediaSrc: "/work-media/services.png",
     mediaType: "image",
     gridClass: "col-span-1 md:col-span-2 h-[260px] md:h-[320px]",
   },
@@ -139,6 +139,7 @@ export default function QueHacemos() {
           <m.div variants={cardVariants} className="mt-16 flex justify-center">
             <Link 
               href="/servicios"
+              prefetch={false}
               className="group inline-flex items-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
               Ver todos los servicios

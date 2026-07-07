@@ -80,7 +80,7 @@ export function Footer({ theme = "light" }: FooterProps) {
 
           {/* Column 1: Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="block relative w-10 h-10 mb-5">
+            <Link href="/" prefetch={false} className="block relative w-10 h-10 mb-5">
               <Image
                 src="/logo.png"
                 alt="Casa Nómada Logo"
@@ -105,6 +105,7 @@ export function Footer({ theme = "light" }: FooterProps) {
                 <li key={link.label}>
                   <Link
                     href={link.href}
+                    prefetch={false}
                     className={`text-sm transition-colors inline-flex items-center gap-1 group ${textLink}`}
                   >
                     {link.label}
