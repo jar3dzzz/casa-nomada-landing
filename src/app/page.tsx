@@ -16,10 +16,12 @@ export default function HomePage() {
       <Hero />
       <Conocenos />
       <section className="w-full bg-white flex flex-col items-center">
-        <h3 className="text-sm uppercase tracking-[0.2em] text-slate-500 text-center mb-8 font-medium">
-          Marcas que confían en nosotros
-        </h3>
-        <CollaboratorsSlider />
+        <div className="container mx-auto px-4 sm:px-6">
+          <p className="text-center text-sm font-semibold tracking-[0.2em] text-slate-400 uppercase mb-8">
+            Marcas que confían en mí
+          </p>
+          <CollaboratorsSlider />
+        </div>
       </section>
       <QueHacemos />
       <Impacto />

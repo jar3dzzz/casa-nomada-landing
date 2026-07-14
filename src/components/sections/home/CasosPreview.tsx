@@ -18,20 +18,20 @@ interface CaseStudy {
 
 const CASE_STUDIES: CaseStudy[] = [
   {
-    id: "laut",
-    title: "Laut",
-    category: "Branding & Identidad Visual",
-    videoSrc: "/cases/laut.mp4",
-    logoSrc: "/cases/logos/laut-logo.png",
-    logoAlt: "Logo de Laut",
+    id: "kairos",
+    title: "Kairós",
+    category: "Estrategia & Contenido",
+    videoSrc: "/ely.mp4",
+    logoSrc: "/cases/logos/belafiori-logo.png",
+    logoAlt: "Logo de Kairós",
   },
   {
-    id: "madan",
-    title: "Madan",
-    category: "Estrategia & Contenido Premium",
-    videoSrc: "/cases/madan.mp4",
-    logoSrc: "/cases/logos/madan-logo.jpg.png",
-    logoAlt: "Logo de Madan",
+    id: "nova",
+    title: "Nova Apparel",
+    category: "Marketing Digital",
+    videoSrc: "/ely.mp4",
+    logoSrc: "/cases/logos/belafiori-logo.png",
+    logoAlt: "Logo de Nova",
   },
 ];
 
@@ -120,12 +120,12 @@ export default function CasosPreview() {
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-16 gap-6"
         >
           <m.div variants={fadeUpVariants}>
-            <h2 className="font-bricolage font-extrabold text-3xl lg:text-4xl text-slate-900 tracking-tight">
+            <h2 className="font-bricolage font-extrabold text-3xl lg:text-4xl text-green-950 tracking-tight">
               Casos de Estudio
             </h2>
-            <p className="text-slate-600 mt-4 max-w-md">
-              Un vistazo a nuestras colaboraciones recientes. Marcas que
-              confiaron en nuestra visión para escalar al siguiente nivel.
+            <p className="text-green-800 mt-4 max-w-md">
+              Un vistazo a mis colaboraciones recientes. Marcas que
+              confiaron en mi visión para escalar al siguiente nivel.
             </p>
           </m.div>
 
@@ -133,7 +133,7 @@ export default function CasosPreview() {
             <Link
               href="/clientes"
               prefetch={false}
-              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.1em] text-slate-900 hover:text-slate-600 transition-colors group"
+              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.1em] text-green-950 hover:text-green-800 transition-colors group"
             >
               Ver todos los proyectos
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -167,7 +167,7 @@ export default function CasosPreview() {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Subtle overlay on hover */}
-                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-green-950/10 group-hover:bg-transparent transition-colors duration-500" />
 
                   {/* Client logo badge */}
                   <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-sm">
@@ -183,10 +183,10 @@ export default function CasosPreview() {
 
                 {/* Card Info */}
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500 mb-2">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-green-700 mb-2">
                     {study.category}
                   </p>
-                  <h3 className="font-bricolage font-bold text-2xl text-slate-900 group-hover:text-slate-700 transition-colors">
+                  <h3 className="font-bricolage font-bold text-2xl text-green-950 group-hover:text-green-800 transition-colors">
                     {study.title}
                   </h3>
                 </div>

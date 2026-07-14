@@ -43,86 +43,86 @@ interface Business {
 
 const BUSINESSES: Business[] = [
   {
-    id: "laut",
-    name: "Laut",
-    logo: "/cases/logos/laut-logo.png",
+    id: "kairos",
+    name: "Kairós",
+    logo: "/cases/logos/belafiori-logo.png",
     mediaType: "video",
-    mediaSrc: "/cases/laut.mp4",
+    mediaSrc: "/ely.mp4",
     bgColor: "#FAF7F2",
     phases: [
       {
         tags: [
-          { label: "Seasonal Content", icon: <Sparkles className="w-3.5 h-3.5" /> }
+          { label: "Estrategia Digital", icon: <Sparkles className="w-3.5 h-3.5" /> }
         ],
-        copy: "Reflejamos la experiencia de laut en lenguaje visual, conectando con su comunidad como nunca antes.",
+        copy: "Diseñé una estrategia integral para Kairós, conectando su propuesta de bienestar con una audiencia premium.",
         metrics: [
-          { value: "+350 MIL", label: "visualizaciones" },
-          { value: "+6 MIL", label: "interacciones" }
+          { value: "+120%", label: "crecimiento en reservas" },
+          { value: "+5 MIL", label: "nuevos seguidores" }
         ],
-        subCopy: "logrando resultados sólidos con historias que reflejan el valor de la marca"
+        subCopy: "Logrando un posicionamiento sólido en menos de 3 meses."
       }
     ]
   },
   {
-    id: "715",
-    name: "7:QUINCE",
-    logo: "/cases/logos/715-logo.png",
+    id: "lumina",
+    name: "Lumina Studio",
+    logo: "/cases/logos/belafiori-logo.png",
     mediaType: "image",
-    mediaSrc: "/cases/715.jpg",
+    mediaSrc: "/cases/lumina.png",
     bgColor: "#EAE8E4",
     phases: [
       {
         tags: [
-          { label: "Community Building", icon: <Users className="w-3.5 h-3.5" /> }
+          { label: "Community Management", icon: <Users className="w-3.5 h-3.5" /> }
         ],
-        copy: "Fomentamos la comunidad digital de 7:QUINCE con contenido que incita la interacción."
+        copy: "Fomenté la comunidad digital de Lumina con contenido interactivo que multiplicó su alcance orgánico."
       },
       {
         tags: [
-          { label: "IRL community", icon: <Music className="w-3.5 h-3.5" /> }
+          { label: "Content Creation", icon: <Music className="w-3.5 h-3.5" /> }
         ],
-        copy: "Creamos sundaze, un evento que impulsa el sentido de comunidad y la cultura de la música house.",
+        copy: "Produje campañas visuales que capturan la esencia minimalista de la marca.",
         metrics: [
-          { value: "+300", label: "personas en 3 ediciones" }
+          { value: "+300", label: "leads calificados" }
         ]
       }
     ]
   },
   {
-    id: "madan",
-    name: "Madan",
-    logo: "/cases/logos/madan-logo.jpg.png",
+    id: "nova",
+    name: "Nova Apparel",
+    logo: "/cases/logos/belafiori-logo.png",
     mediaType: "video",
-    mediaSrc: "/cases/madan.mp4",
+    mediaSrc: "/ely.mp4",
     bgColor: "#c7d6dcff",
     phases: [
       {
         tags: [
-          { label: "High reach", icon: <TrendingUp className="w-3.5 h-3.5" /> }
+          { label: "Growth Marketing", icon: <TrendingUp className="w-3.5 h-3.5" /> }
         ],
-        copy: "Creamos desde 0 la comunidad de madan, logrando que la viralidad se convierta en ventas.",
+        copy: "Estructuré el embudo de ventas de Nova, convirtiendo tráfico frío en clientes recurrentes mediante Meta Ads.",
         metrics: [
-          { value: "+5M", label: "visualizaciones" },
-          { value: "+15K", label: "seguidores" },
-          { value: "4 Meses", label: "de crecimiento" }
+          { value: "3.5x", label: "retorno de inversión" },
+          { value: "+15K", label: "visitas mensuales" },
+          { value: "1 Mes", label: "de optimización" }
         ]
       }
     ]
   },
   {
-    id: "unilabor",
-    name: "Unilabor",
-    logo: "/cases/logos/unilabor-logo.png",
+    id: "vertex",
+    name: "Vertex Estate",
+    logo: "/cases/logos/belafiori-logo.png",
     mediaType: "image",
-    mediaSrc: "/cases/unilabor.jpg",
+    mediaSrc: "/cases/vertex.png",
     bgColor: "#F4F1ED",
     phases: [
       {
         tags: [
-          { label: "Visual upgrade", icon: <Eye className="w-3.5 h-3.5" /> }
+          { label: "Branding", icon: <Eye className="w-3.5 h-3.5" /> }
         ],
-        copy: "Definimos el rumbo visual de unilabor, construyendo una comunicación a la altura de su servicio.",
-        secondaryCopy: "Traduciendo procesos de calidad a una imagen clara y profesional."
+        copy: "Definí el rumbo visual y verbal de Vertex, construyendo una comunicación a la altura de su servicio.",
+        secondaryCopy: "Traduciendo procesos complejos a una imagen clara y profesional."
       }
     ]
   }
@@ -148,7 +148,7 @@ export default function Clientes() {
         <HeroSection
           className="mb-16 !py-0"
           title={<><span className="text-slate-500 text-sm font-semibold uppercase tracking-[0.25em] block mb-2 font-sans">Proyectos Recientes</span>Casos de Éxito</>}
-          subtitle="Descubre cómo hemos transformado visiones estratégicas en marcas líderes que conectan, inspiran y venden."
+          subtitle="Descubre cómo he transformado visiones estratégicas en marcas líderes que conectan, inspiran y venden."
           images={['/cases/715.jpg', '/cases/unilabor.jpg', '/ola.jpg']}
           actions={[
             { text: "Inicia tu proyecto", href: '/contacto', variant: 'default', className: "pointer-events-auto" }
@@ -165,7 +165,7 @@ export default function Clientes() {
             Nuestros colaboradores
           </h2>
           <p className="text-slate-600 max-w-md mx-auto text-sm mb-8 leading-relaxed">
-            Las marcas y proyectos que han confiado en nuestro enfoque para destacar en el mercado premium.
+            Las marcas y proyectos que han confiado en mi enfoque para destacar en el mercado premium.
           </p>
           <CollaboratorsSlider />
         </div>
@@ -283,7 +283,7 @@ export default function Clientes() {
           <HeroSection
             className="w-full"
             title={<><span className="text-slate-500 text-2xl uppercase tracking-widest block mb-2 font-sans font-semibold">Proyectos Recientes</span>Casos de Éxito</>}
-            subtitle="Descubre cómo hemos transformado visiones estratégicas en marcas líderes que conectan, inspiran y venden."
+            subtitle="Descubre cómo he transformado visiones estratégicas en marcas líderes que conectan, inspiran y venden."
             images={['/cases/715.jpg', '/cases/unilabor.jpg', '/cases/715.jpg']}
             actions={[
               { text: "Inicia tu proyecto", href: '/contacto', variant: 'default', className: "pointer-events-auto" }
@@ -300,7 +300,7 @@ export default function Clientes() {
               Nuestros colaboradores
             </h2>
             <p className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
-              Las marcas y proyectos que han confiado en nuestro enfoque para destacar en el mercado premium.
+              Las marcas y proyectos que han confiado en mi enfoque para destacar en el mercado premium.
             </p>
           </>
         }

@@ -3,16 +3,15 @@
 import Image from "next/image";
 
 const COLLABORATORS = [
-  { id: "2ndfloor", name: "2nd Floor", src: "/cases/logos/2ndfloor-logo.png" },
-  { id: "715", name: "715", src: "/cases/logos/715-logo.png" },
-  { id: "laut", name: "Laut", src: "/cases/logos/laut-logo.png" },
-  { id: "mardo", name: "Mardo", src: "/cases/logos/mardo-logo.png" },
-  { id: "madan", name: "Madan", src: "/cases/logos/madan-logo.jpg.png" },
-  { id: "unilabor", name: "Unilabor", src: "/cases/logos/unilabor-logo.png" },
   { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
-  { id: "edoarda", name: "Edoarda", src: "/cases/logos/edoarda-logo.png" },
-  { id: "multitask", name: "Multitask", src: "/cases/logos/multitask.png" },
-  { id: "caimito", name: "Caimito", src: "/cases/logos/caimito-logo.png" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
 ];
 
 export default function CollaboratorsSlider() {

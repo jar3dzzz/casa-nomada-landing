@@ -29,7 +29,7 @@ const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
+const FacebookIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -39,9 +39,7 @@ const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
     strokeLinejoin="round"
     {...props}
   >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
   </svg>
 );
 
@@ -53,8 +51,8 @@ const QUICK_LINKS: FooterLink[] = [
 ];
 
 const SOCIAL_LINKS: SocialLink[] = [
-  { label: "Instagram", href: "https://www.instagram.com/casanomadamx?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", icon: InstagramIcon },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/casa-nomada-mx/", icon: LinkedinIcon },
+  { label: "Instagram", href: "https://www.instagram.com/elylapublicista", icon: InstagramIcon },
+  { label: "Facebook", href: "https://www.facebook.com/elylapublicista", icon: FacebookIcon },
 ];
 
 interface FooterProps {
@@ -65,13 +63,13 @@ export function Footer({ theme = "light" }: FooterProps) {
   const currentYear = new Date().getFullYear();
   
   const isDark = theme === "dark";
-  const textHeading = isDark ? "text-white" : "text-slate-900";
-  const textBody = isDark ? "text-slate-300" : "text-slate-500";
-  const textLink = isDark ? "text-slate-300 hover:text-white" : "text-slate-600 hover:text-slate-900";
+  const textHeading = isDark ? "text-white" : "text-green-950";
+  const textBody = isDark ? "text-green-200" : "text-green-800";
+  const textLink = isDark ? "text-green-200 hover:text-white" : "text-green-700 hover:text-green-950";
   const borderStyle = isDark ? "border-white/10" : "border-stone-300/50";
   const iconStyle = isDark 
-    ? "border-white/20 text-slate-300 hover:bg-white hover:text-slate-900 hover:border-white" 
-    : "border-stone-300/80 text-slate-600 hover:bg-slate-900 hover:text-white hover:border-slate-900";
+    ? "border-white/20 text-green-200 hover:bg-white hover:text-green-950 hover:border-white" 
+    : "border-stone-300/80 text-green-800 hover:bg-green-950 hover:text-white hover:border-green-950";
 
   return (
     <footer className={`w-full border-t mt-16 ${borderStyle}`}>
@@ -83,15 +81,14 @@ export function Footer({ theme = "light" }: FooterProps) {
             <Link href="/" prefetch={false} className="block relative w-10 h-10 mb-5">
               <Image
                 src="/logo.png"
-                alt="Casa Nómada Logo"
+                alt="Ely la publicista Logo"
                 fill
                 sizes="40px"
                 className={`object-contain ${isDark ? "brightness-0 invert" : ""}`}
               />
             </Link>
             <p className={`text-sm leading-relaxed max-w-xs ${textBody}`}>
-              Una célula creativa basada en Villahermosa y Monterrey, estructurando marcas
-              de hospitalidad y comercio premium.
+              La publicista que hará visible tu marca.
             </p>
           </div>
 
@@ -124,14 +121,14 @@ export function Footer({ theme = "light" }: FooterProps) {
             <ul className="flex flex-col gap-3">
               <li>
                 <a
-                  href="mailto:info@casanomada.com.mx"
+                  href="mailto:elygomez.mkt@gmail.com"
                   className={`text-sm transition-colors ${textLink}`}
                 >
-                  info@casanomada.com.mx
+                  elygomez.mkt@gmail.com
                 </a>
               </li>
               <li className={`text-sm ${textBody}`}>
-                Villahermosa, Tabasco | Monterrey, Nuevo León
+                Villahermosa, Tabasco
               </li>
             </ul>
           </div>
@@ -139,7 +136,7 @@ export function Footer({ theme = "light" }: FooterProps) {
           {/* Column 4: Social */}
           <div>
             <h4 className={`font-bricolage font-bold text-sm uppercase tracking-[0.2em] mb-5 ${textHeading}`}>
-              Síguenos
+              Sígueme
             </h4>
             <div className="flex items-center gap-3">
               {SOCIAL_LINKS.map((social) => {
@@ -161,12 +158,11 @@ export function Footer({ theme = "light" }: FooterProps) {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className={`mt-16 pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4 ${borderStyle}`}>
-          <p className={`text-xs ${isDark ? "text-slate-400" : "text-slate-400"}`}>
-            © {currentYear} Casa Nómada. Todos los derechos reservados.
+          <p className={`text-xs ${isDark ? "text-green-400" : "text-green-600"}`}>
+            © {currentYear} Ely la publicista. Todos los derechos reservados.
           </p>
-          <p className={`text-xs ${isDark ? "text-slate-400" : "text-slate-400"}`}>
+          <p className={`text-xs ${isDark ? "text-green-400" : "text-green-600"}`}>
             Diseñado con propósito en Villahermosa.
           </p>
         </div>

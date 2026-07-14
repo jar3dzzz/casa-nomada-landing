@@ -27,38 +27,29 @@ interface ServiceItem {
 const SERVICES: ServiceItem[] = [
   {
     id: "estrategias",
-    title: "Estrategias",
+    title: "Estrategia Digital",
     description: "Alineamos objetivos de negocio con acciones tácticas para posicionar tu proyecto en el segmento premium.",
     icon: Briefcase,
-    mediaSrc: "/work-media/work-1.webp",
+    mediaSrc: "/cases/vertex.png",
     mediaType: "image",
     gridClass: "col-span-1 md:col-span-4 h-[300px] md:h-[380px]",
   },
   {
     id: "contenido",
-    title: "Creación de Contenido",
+    title: "Contenido",
     description: "Producimos narrativas visuales y editoriales impecables que capturan la atención y generan conversión.",
     icon: Camera,
-    mediaSrc: "/work-media/work-3.mp4",
+    mediaSrc: "/ely.mp4",
     mediaType: "video",
     gridClass: "col-span-1 md:col-span-2 h-[300px] md:h-[380px]",
   },
   {
     id: "marketing",
-    title: "Marketing Digital",
+    title: "Marketing",
     description: "Conectamos tu marca con su audiencia ideal a través de campañas de crecimiento orgánico y de posicionamiento.",
     icon: Sparkles,
-    mediaSrc: "/work-media/work-2.webp",
+    mediaSrc: "/cases/lumina.png",
     mediaType: "image",
-    gridClass: "col-span-1 md:col-span-2 h-[260px] md:h-[320px]",
-  },
-  {
-    id: "ads",
-    title: "Ads",
-    description: "Maximizamos tu retorno de inversión con pauta digital ultra-segmentada y optimización continua.",
-    icon: TrendingUp,
-    mediaSrc: "/work-media/work-7.mp4",
-    mediaType: "video",
     gridClass: "col-span-1 md:col-span-2 h-[260px] md:h-[320px]",
   },
   {
@@ -93,10 +84,11 @@ export default function QueHacemos() {
   return (
     <section className="py-28 lg:py-32 bg-white/50 relative overflow-hidden">
       {/* Decorative background meshes & shapes */}
-      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
+      {/* Hidden on mobile to boost rendering performance */}
+      <div className="hidden md:block absolute inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
         {/* Gradients */}
-        <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] rounded-full bg-orange-500/10 blur-[100px]" />
-        <div className="absolute bottom-[20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-amber-500/10 blur-[120px]" />
+        <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] rounded-full bg-emerald-600/10 blur-[100px]" />
+        <div className="absolute bottom-[20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-teal-600/10 blur-[120px]" />
         
         {/* Outlined Circles */}
         <div className="absolute top-[15%] right-[10%] w-[250px] h-[250px] rounded-full border border-stone-200/40" />
@@ -118,13 +110,13 @@ export default function QueHacemos() {
         >
           {/* Header Section */}
           <m.div variants={cardVariants} className="max-w-2xl mb-16">
-            <h2 className="font-bricolage font-extrabold text-3xl lg:text-4xl text-slate-900 tracking-tight mb-4">
-              ¿Qué hace Casa Nómada?
-            </h2>
-            <p className="text-lg text-slate-600 leading-relaxed">
-              Nos especializamos en estructurar marcas de hospitalidad y
-              comercio premium. Nuestro enfoque combina estética refinada con
-              marketing estratégico para crear narrativas irresistibles.
+            <h3 className="font-bricolage font-bold text-xl md:text-2xl text-green-950 mb-3">
+              ¿Qué hace Ely la publicista?
+            </h3>
+            <p className="text-sm md:text-base text-green-800 leading-relaxed font-inter">
+              Estructuro y potencio marcas de hospitalidad y
+              comercio premium. Mi enfoque combina estética refinada con
+              estrategias basadas en datos para crear narrativas irresistibles.
             </p>
           </m.div>
 
@@ -140,7 +132,7 @@ export default function QueHacemos() {
             <Link 
               href="/servicios"
               prefetch={false}
-              className="group inline-flex items-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="group inline-flex items-center gap-2 bg-green-950 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-green-900"
             >
               Ver todos los servicios
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -178,7 +170,7 @@ function BentoCard({ service, index }: { service: ServiceItem; index: number }) 
       variants={cardVariants}
       custom={index}
       className={`relative rounded-3xl border overflow-hidden transition-all duration-500 ease-out cursor-pointer group ${service.gridClass} ${
-        isHovered ? "border-orange-500 shadow-lg -translate-y-1" : "border-stone-200/50 shadow-sm"
+        isHovered ? "border-emerald-600 shadow-lg -translate-y-1" : "border-stone-200/50 shadow-sm"
       }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -226,8 +218,8 @@ function BentoCard({ service, index }: { service: ServiceItem; index: number }) 
           <div
             className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 ease-out ${
               isHovered
-                ? "bg-orange-500 scale-110 shadow-md shadow-orange-500/20"
-                : "bg-orange-500"
+                ? "bg-emerald-600 scale-110 shadow-md shadow-emerald-600/20"
+                : "bg-emerald-600"
             }`}
           >
             <Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
@@ -237,14 +229,14 @@ function BentoCard({ service, index }: { service: ServiceItem; index: number }) 
         <div className="space-y-3">
           <h3
             className={`font-bricolage font-bold text-2xl transition-colors duration-500 ${
-              isHovered ? "text-white" : "text-slate-900"
+              isHovered ? "text-white" : "text-green-950"
             }`}
           >
             {service.title}
           </h3>
           <p
             className={`leading-relaxed text-sm lg:text-base transition-colors duration-500 ${
-              isHovered ? "text-slate-200" : "text-slate-600"
+              isHovered ? "text-green-100" : "text-green-800"
             }`}
           >
             {service.description}

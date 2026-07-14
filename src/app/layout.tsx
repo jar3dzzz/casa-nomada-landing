@@ -18,9 +18,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Casa Nómada | Creatividad de Alto Impacto",
+  title: "Ely la publicista | Estrategias de Marketing Digital",
   description:
-    "Casa Nómada es una célula creativa en Villahermosa y Monterrey, estructurando marcas de hospitalidad y comercio premium.",
+    "Estratega de marketing digital ayudando a negocios a crecer con publicidad y contenido.",
 };
 
 export default function RootLayout({
