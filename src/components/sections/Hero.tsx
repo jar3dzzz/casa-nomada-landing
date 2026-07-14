@@ -125,7 +125,7 @@ function ImageFrame({ className }: { className: string }) {
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center pt-32 pb-20 lg:pt-40 lg:pb-24">
+    <section className="relative w-full min-h-screen flex flex-col justify-center pt-32 pb-20 lg:pt-20 lg:pb-24">
       {/* Geometric decoration layer */}
       <HeroGeometry />
 

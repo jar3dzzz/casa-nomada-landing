@@ -67,7 +67,7 @@ export default function Conocenos() {
           {/* Visual Column (Parallax) */}
           <ScrollParallaxImage className="relative order-1 lg:order-2 w-full h-[500px] md:h-[600px] lg:h-[700px] rounded-3xl">
             <Image
-              src="/cases/lumina.png"
+              src="/ola.jpg"
               alt="Ely la publicista Filosofía"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

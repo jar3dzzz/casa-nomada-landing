@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { DecorativeShapes } from "@/components/ui/DecorativeShapes";
 import { Providers } from "@/components/Providers";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import "./globals.css";
 
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="es" className={`${bricolageGrotesque.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-[#F4F1ED] text-slate-900 min-h-screen relative">
         <Providers>
+          <ScrollToTop />
           <DecorativeShapes />
           <div className="relative z-10">
             <Navbar />
