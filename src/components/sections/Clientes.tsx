@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Sparkles, Users, TrendingUp, Eye, Music } from "lucide-react";
@@ -6,7 +8,7 @@ import HeroSection from "@/components/ui/hero-section-9";
 import CollaboratorsSlider from "@/components/sections/home/CollaboratorsSlider";
 import { LazyVideo } from "@/components/ui/lazy-video";
 import FloatingBackground from "@/components/ui/floating-background";
-
+import { Planet } from 'reicon-react';
 // Client Wrappers
 import { 
   ClientesScrollController, 
@@ -45,7 +47,7 @@ const BUSINESSES: Business[] = [
   {
     id: "kairos",
     name: "Kairós",
-    logo: "/cases/logos/belafiori-logo.png",
+    logo: "/cases/logos/planet-outline.svg",
     mediaType: "video",
     mediaSrc: "/ely.mp4",
     bgColor: "#FAF7F2",
@@ -66,7 +68,7 @@ const BUSINESSES: Business[] = [
   {
     id: "lumina",
     name: "Lumina Studio",
-    logo: "/cases/logos/belafiori-logo.png",
+    logo: "/cases/logos/planet-outline.svg",
     mediaType: "image",
     mediaSrc: "/cases/lumina.png",
     bgColor: "#EAE8E4",
@@ -91,7 +93,7 @@ const BUSINESSES: Business[] = [
   {
     id: "nova",
     name: "Nova Apparel",
-    logo: "/cases/logos/belafiori-logo.png",
+    logo: "/cases/logos/planet-outline.svg",
     mediaType: "video",
     mediaSrc: "/ely.mp4",
     bgColor: "#c7d6dcff",
@@ -112,7 +114,7 @@ const BUSINESSES: Business[] = [
   {
     id: "vertex",
     name: "Vertex Estate",
-    logo: "/cases/logos/belafiori-logo.png",
+    logo: "/cases/logos/planet-outline.svg",
     mediaType: "image",
     mediaSrc: "/cases/vertex.png",
     bgColor: "#F4F1ED",
@@ -199,13 +201,7 @@ export default function Clientes() {
                     {/* Header */}
                     <div className="flex items-center gap-5 border-b border-stone-100 pb-4">
                       <div className="relative h-12 w-28 flex-shrink-0">
-                        <Image
-                          src={biz.logo}
-                          alt={`${biz.name} logo`}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-contain object-left brightness-0"
-                        />
+                        <Planet size={48} className="w-full h-full text-black" />
                       </div>
                       <h3 className="font-bricolage font-extrabold text-2xl tracking-tight text-slate-900 border-l-2 border-slate-200 pl-5">
                         {biz.name}
@@ -339,13 +335,7 @@ function BusinessRow({ business, index, totalBusinesses }: BusinessRowProps) {
           {/* Logo and Name (Persistent for the whole business duration) */}
           <div className="flex items-center gap-6 mb-8 mt-4">
              <div className="relative h-16 w-40 lg:h-20 lg:w-48 flex-shrink-0">
-               <Image 
-                 src={business.logo} 
-                 alt={`${business.name} logo`} 
-                 fill 
-                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                 className={`object-contain object-left transition-all duration-500 ${business.theme === 'dark' ? 'brightness-0 invert' : 'brightness-0'}`} 
-               />
+               <Planet size={64} className="w-full h-full transition-all duration-500 text-black" />
              </div>
              <h3 className={`font-bricolage font-extrabold text-3xl lg:text-4xl tracking-tight border-l-2 pl-6 py-1 transition-colors duration-500 ${business.theme === 'dark' ? 'text-white border-white/20' : 'text-slate-900 border-slate-200'}`}>
                {business.name}

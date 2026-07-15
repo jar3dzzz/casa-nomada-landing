@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useSyncExternalStore } from "react";
 import { m, AnimatePresence, Variants } from "framer-motion";
+import { Planet } from 'reicon-react';
 
 interface NavLink {
   label: string;
@@ -150,16 +151,9 @@ export function Navbar() {
                 <m.div
                   animate={{ rotate: (isOpen && isMobile) ? -180 : 0 }}
                   transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="relative w-12 h-12 cursor-pointer active:scale-95 transition-transform invert brightness-[10]"
+                  className="relative w-12 h-12 cursor-pointer active:scale-95 transition-transform"
                 >
-                  <Image
-                    src="/cases/logos/belafiori-logo.png"
-                    alt="Ely la publicista Logo"
-                    fill
-                    sizes="48px"
-                    className="object-contain"
-                    priority
-                  />
+                  <Planet size={48} className="w-full h-full text-black" />
                 </m.div>
               </Link>
             </div>

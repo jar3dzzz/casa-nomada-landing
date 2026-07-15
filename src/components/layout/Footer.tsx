@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-
+import { Planet } from 'reicon-react';
 interface FooterLink {
   label: string;
   href: string;
@@ -79,13 +81,7 @@ export function Footer({ theme = "light" }: FooterProps) {
           {/* Column 1: Brand */}
           <div className="lg:col-span-1">
             <Link href="/" prefetch={false} className="block relative w-10 h-10 mb-5">
-              <Image
-                src="/logo.png"
-                alt="Ely la publicista Logo"
-                fill
-                sizes="40px"
-                className={`object-contain ${isDark ? "brightness-0 invert" : ""}`}
-              />
+              <Planet size={40} className="w-full h-full text-black" />
             </Link>
             <p className={`text-sm leading-relaxed max-w-xs ${textBody}`}>
               La publicista que hará visible tu marca.

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { m } from "framer-motion";
 import { LazyVideo } from "@/components/ui/lazy-video";
-
+import { Planet } from 'reicon-react';
 /* ─── Case study data ─── */
 interface CaseStudy {
   id: string;
@@ -22,7 +22,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "Kairós",
     category: "Estrategia & Contenido",
     videoSrc: "/ely.mp4",
-    logoSrc: "/cases/logos/belafiori-logo.png",
+    logoSrc: "/cases/logos/planet-outline.svg",
     logoAlt: "Logo de Kairós",
   },
   {
@@ -30,7 +30,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "Nova Apparel",
     category: "Marketing Digital",
     videoSrc: "/ely.mp4",
-    logoSrc: "/cases/logos/belafiori-logo.png",
+    logoSrc: "/cases/logos/planet-outline.svg",
     logoAlt: "Logo de Nova",
   },
 ];
@@ -171,13 +171,7 @@ export default function CasosPreview() {
 
                   {/* Client logo badge */}
                   <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-sm">
-                    <Image
-                      src={study.logoSrc}
-                      alt={study.logoAlt}
-                      width={80}
-                      height={28}
-                      className="h-6 w-auto object-contain brightness-0"
-                    />
+                    <Planet size={28} className="h-6 w-auto text-black" />
                   </div>
                 </div>
 
