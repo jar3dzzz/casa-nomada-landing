@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
-import CollaboratorsSlider from "@/components/sections/home/CollaboratorsSlider";
 import Conocenos from "@/components/sections/home/Conocenos";
 import { Footer } from "@/components/layout/Footer";
 
@@ -12,23 +11,15 @@ const ContactoMini = dynamic(() => import("@/components/sections/home/ContactoMi
 
 export default function HomePage() {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden bg-stone-50">
       <Hero />
       <Conocenos />
-      <section className="w-full bg-white flex flex-col items-center">
-        <div className="container mx-auto px-4 sm:px-6">
-          <p className="text-center text-sm font-semibold tracking-[0.2em] text-slate-400 uppercase mb-8">
-            Marcas que confían en mí
-          </p>
-          <CollaboratorsSlider />
-        </div>
-      </section>
       <QueHacemos />
-      <Impacto />
       <CasosPreview />
+      <Impacto />
       <Testimonios />
       <ContactoMini />
-      <Footer theme="light" />
+      <Footer />
     </div>
   );
 }

@@ -1,267 +1,348 @@
 "use client";
 
-import { useState } from "react";
+import { m } from "framer-motion";
+import { ArrowRight, Code, PenTool, Lightbulb, Camera, TrendingUp, Check } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
-import { m, AnimatePresence } from "framer-motion";
-import { LazyVideo } from "@/components/ui/lazy-video";
-import { ArrowRight, Code, PenTool, Lightbulb, Camera, TrendingUp } from "lucide-react";
-
-// Dummy Data para los Servicios
-const SERVICIOS_DATA = [
-  {
-    id: "estrategia",
-    title: "Estrategia Digital",
-    icon: Lightbulb,
-    heroImage: "/cases/lumina.png",
-    detailImage: "/cases/lumina.png",
-    description: "Auditoría, investigación de mercado y roadmap. Construyo los cimientos para que tu marca se posicione y conecte con su audiencia.",
-    process: [
-      { step: "1. Descubrimiento", desc: "Auditoría profunda de tu marca y mercado." },
-      { step: "2. Planificación", desc: "Definición de objetivos, KPIs y rutas de acción." },
-      { step: "3. Ejecución", desc: "Implementación estratégica guiada por data." }
-    ],
-    deliverables: ["Estudio de Mercado", "Roadmap Estratégico", "Análisis de Competencia", "Plan de Acción"]
-  },
-  {
-    id: "pautas",
-    title: "Gestión de Pautas",
-    icon: TrendingUp,
-    heroImage: "/cases/vertex.png",
-    detailImage: "/cases/vertex.png",
-    description: "Gestión y optimización de campañas publicitarias en Meta y Google Ads. Diseño funnels y segmento audiencias para maximizar tu retorno de inversión.",
-    process: [
-      { step: "1. Estructura", desc: "Diseño del funnel de ventas y segmentación de audiencias." },
-      { step: "2. Lanzamiento", desc: "Configuración técnica y despliegue de los anuncios." },
-      { step: "3. Optimización", desc: "Monitoreo diario, pruebas A/B y escalado." }
-    ],
-    deliverables: ["Campañas en Meta Ads", "Campañas en Google Ads", "Reportes de Rendimiento", "Optimización de Presupuesto"]
-  },
-  {
-    id: "contenido",
-    title: "Creación de Contenido",
-    icon: Camera,
-    heroImage: "/work-media/work-2.webp",
-    detailImage: "/ely.mp4",
-    detailMediaType: "video" as const,
-    description: "Dirección creativa y producción de narrativas visuales. Produzco contenido que captura la esencia de tu marca e inspira a tu audiencia.",
-    process: [
-      { step: "1. Pre-Producción", desc: "Planeación, guiones y dirección de arte." },
-      { step: "2. Producción", desc: "Creación de contenido visual de alta calidad." },
-      { step: "3. Edición", desc: "Post-producción y formato para redes sociales." }
-    ],
-    deliverables: ["Fotografía Comercial", "Video Reels", "Dirección de Arte", "Guiones de Contenido"]
-  },
-  {
-    id: "consultoria",
-    title: "Consultoría 1:1",
-    icon: PenTool,
-    heroImage: "/cases/vertex.png",
-    detailImage: "/cases/vertex.png",
-    description: "Sesiones estratégicas personalizadas para destrabar el crecimiento de tu negocio. Analizamos tu situación actual y definimos los siguientes pasos tácticos.",
-    process: [
-      { step: "1. Diagnóstico", desc: "Evaluación inicial de tus retos y objetivos." },
-      { step: "2. Sesión Estratégica", desc: "Consultoría intensiva 1 a 1." },
-      { step: "3. Plan de Acción", desc: "Entrega de pasos tácticos a implementar." }
-    ],
-    deliverables: ["Sesión de 60-90 min", "Grabación de la Sesión", "Documento de Diagnóstico", "Plan Táctico Inmediato"]
-  },
-  {
-    id: "web",
-    title: "Páginas Web",
-    icon: Code,
-    heroImage: "/work-media/work-4.jpg",
-    detailImage: "/work-media/work-4.jpg",
-    description: "Diseño y desarrollo de sitios web modernos, rápidos y optimizados para convertir visitantes en clientes.",
-    process: [
-      { step: "1. UX / UI Design", desc: "Wireframes y diseño de interfaces." },
-      { step: "2. Desarrollo", desc: "Código optimizado para SEO y velocidad." },
-      { step: "3. Lanzamiento", desc: "Testing y despliegue del sitio web." }
-    ],
-    deliverables: ["Landing Pages", "Sitios Corporativos", "Mantenimiento Web", "Optimización SEO"]
-  }
-];
 
 export default function Servicios() {
-  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
-
-  const scrollToService = (id: string) => {
-    const element = document.getElementById(id);
-    if (!element) return;
-    const navbarOffset = 100; // offset for the sticky navbar and some breathing room
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.scrollY - navbarOffset;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth"
-    });
-  };
-
   return (
-    <div className="w-full bg-[#F4F1ED]">
-      
-      {/* 1. HERO INTERACTIVO (Brutalista-Elegante) */}
-      <section className="relative min-h-screen w-full pt-32 pb-16 lg:pt-40 lg:pb-16 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 h-full gap-12 lg:gap-8 items-center">
-            
-            {/* Columna Izquierda: Lista de Servicios */}
-            <div className="col-span-1 lg:col-span-5 flex flex-col justify-center h-full pt-12 lg:pt-0">
-              <h1 className="font-bricolage font-extrabold text-7xl lg:text-[7rem] tracking-tighter text-slate-900 mb-12 leading-none">
-                Servicios.
-              </h1>
-              
-              <ul className="flex flex-col gap-6 mb-16 relative z-20">
-                {SERVICIOS_DATA.map((service, index) => (
-                  <li 
-                    key={service.id}
-                    onMouseEnter={() => setActiveServiceIndex(index)}
-                    onClick={() => scrollToService(service.id)}
-                    className="group flex items-center cursor-pointer"
-                  >
-                    <span className={`text-4xl lg:text-5xl font-bricolage font-bold tracking-tight transition-all duration-300 ${
-                      activeServiceIndex === index ? "text-slate-900 translate-x-4" : "text-slate-400 group-hover:text-slate-600"
-                    }`}>
-                      {service.title}
-                    </span>
-                    <ArrowRight 
-                      className={`ml-6 w-8 h-8 transition-all duration-300 ${
-                        activeServiceIndex === index ? "opacity-100 text-slate-900 translate-x-0" : "opacity-0 -translate-x-4"
-                      }`} 
-                    />
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-auto border-l-2 border-slate-300 pl-6 hidden lg:block">
-                <span className="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase block mb-2">
-                  MI ENFOQUE
-                </span>
-                <p className="text-sm text-slate-600 max-w-sm leading-relaxed">
-                  No vendo entregables sueltos; construyo sistemas de ventas y contenido. Cada táctica en mi arsenal está enfocada en un solo objetivo: posicionar tu negocio y aumentar tus ingresos.
-                </p>
-              </div>
-            </div>
-
-            {/* Columna Derecha: Imagen Dinámica (Crossfade) */}
-            <div className="col-span-1 lg:col-span-7 h-[50vh] lg:h-[70vh] max-h-[800px] relative w-full rounded-3xl overflow-hidden shadow-2xl bg-stone-200">
-              <AnimatePresence mode="wait">
-                <m.div
-                  key={activeServiceIndex}
-                  style={{ willChange: "transform, opacity" }}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <Image 
-                    src={SERVICIOS_DATA[activeServiceIndex].heroImage}
-                    alt={SERVICIOS_DATA[activeServiceIndex].title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-black/10" />
-                </m.div>
-              </AnimatePresence>
-            </div>
-            
+    <div className="w-full bg-stone-50">
+      <section className="py-24 lg:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          
+          <div className="mb-16 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+            <h2 className="font-nunito font-extrabold text-4xl md:text-5xl lg:text-6xl text-stone-800 leading-tight tracking-tight">
+              Servicios
+            </h2>
+            <p className="text-lg md:text-xl font-medium max-w-sm text-stone-500">
+              No vendo entregables sueltos; construyo sistemas de ventas y narrativas visuales coherentes.
+            </p>
           </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+            
+            {/* Card 1: Estrategia Digital (col-span-2) */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="lg:col-span-2"
+            >
+              <Link
+                href="/contacto"
+                className="group block h-full bg-teal-50 text-teal-900 rounded-[2.5rem] p-8 md:p-10 border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 min-h-[400px] flex flex-col justify-between"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+                  <div className="md:col-span-3 flex flex-col gap-6">
+                    <div>
+                      <div className="w-14 h-14 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                        <Lightbulb className="w-7 h-7" />
+                      </div>
+                      <h3 className="font-nunito font-bold text-3xl mb-3 tracking-tight">Estrategia Digital</h3>
+                      <p className="font-medium text-stone-600 leading-relaxed text-base opacity-90">
+                        Construyo los cimientos estratégicos para que tu marca se posicione y conecte con su audiencia ideal, diferenciándose del ruido del mercado.
+                      </p>
+                    </div>
+
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-semibold text-teal-800">
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-teal-600 flex-shrink-0" />
+                        <span>Auditoría de Marca</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-teal-600 flex-shrink-0" />
+                        <span>Buyer Persona</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-teal-600 flex-shrink-0" />
+                        <span>Roadmap Canales</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-teal-600 flex-shrink-0" />
+                        <span>Estrategia SEO</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="md:col-span-2 relative w-full aspect-[4/3] md:aspect-square h-full min-h-[200px] rounded-3xl overflow-hidden shadow-inner bg-teal-100/50">
+                    <Image
+                      src="/work-media/work-1.webp"
+                      alt="Estrategia Digital"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-8 flex justify-end">
+                  <div className="w-12 h-12 rounded-full bg-white text-teal-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
+                    <ArrowRight className="w-6 h-6 transform -rotate-45 group-hover:rotate-0 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </m.div>
+
+            {/* Card 2: Gestión de Pautas (col-span-1) */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="lg:col-span-1"
+            >
+              <Link
+                href="/contacto"
+                className="group block h-full bg-rose-50 text-rose-900 rounded-[2.5rem] p-8 md:p-10 border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 min-h-[400px] flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-14 h-14 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <TrendingUp className="w-7 h-7" />
+                  </div>
+                  <h3 className="font-nunito font-bold text-3xl mb-3 tracking-tight">Gestión de Pautas</h3>
+                  <p className="font-medium text-stone-600 leading-relaxed text-base opacity-90 mb-6">
+                    Campañas y embudos de ventas optimizados en Meta & Google Ads para atraer clientes de forma recurrente.
+                  </p>
+
+                  <ul className="flex flex-col gap-2 text-sm font-semibold text-rose-800">
+                    <li className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-rose-600 flex-shrink-0" />
+                      <span>Optimización Semanal</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-rose-600 flex-shrink-0" />
+                      <span>Copys Persuasivos (A/B Test)</span>
+                    </li>
+                  </ul>
+                  
+                  <div className="relative w-full h-36 mt-6 rounded-2xl overflow-hidden shadow-inner bg-rose-100/50">
+                    <Image
+                      src="/work-media/services.png"
+                      alt="Pautas Publicitarias"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-8 flex justify-end">
+                  <div className="w-12 h-12 rounded-full bg-white text-rose-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
+                    <ArrowRight className="w-6 h-6 transform -rotate-45 group-hover:rotate-0 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </m.div>
+
+            {/* Card 3: Creación de Contenido (col-span-1) */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="lg:col-span-1"
+            >
+              <Link
+                href="/contacto"
+                className="group block h-full bg-amber-50 text-amber-900 rounded-[2.5rem] p-8 md:p-10 border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 min-h-[400px] flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <Camera className="w-7 h-7" />
+                  </div>
+                  <h3 className="font-nunito font-bold text-3xl mb-3 tracking-tight">Contenido</h3>
+                  <p className="font-medium text-stone-600 leading-relaxed text-base opacity-90 mb-6">
+                    Dirección creativa y producción visual de primer nivel para conectar y fidelizar a tu comunidad digital.
+                  </p>
+
+                  <ul className="flex flex-col gap-2 text-sm font-semibold text-amber-800">
+                    <li className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                      <span>Guiones y Dirección Creativa</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                      <span>Edición de Reels & TikToks</span>
+                    </li>
+                  </ul>
+                  
+                  <div className="relative w-full h-36 mt-6 rounded-2xl overflow-hidden shadow-inner bg-amber-100/50">
+                    <Image
+                      src="/work-media/work-6.jpg"
+                      alt="Creación de Contenido"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-8 flex justify-end">
+                  <div className="w-12 h-12 rounded-full bg-white text-amber-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
+                    <ArrowRight className="w-6 h-6 transform -rotate-45 group-hover:rotate-0 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </m.div>
+
+            {/* Card 4: Páginas Web (col-span-2) */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="lg:col-span-2"
+            >
+              <Link
+                href="/contacto"
+                className="group block h-full bg-blue-50 text-blue-900 rounded-[2.5rem] p-8 md:p-10 border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 min-h-[400px] flex flex-col justify-between"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+                  <div className="md:col-span-3 flex flex-col gap-6">
+                    <div>
+                      <div className="w-14 h-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                        <Code className="w-7 h-7" />
+                      </div>
+                      <h3 className="font-nunito font-bold text-3xl mb-3 tracking-tight">Páginas Web</h3>
+                      <p className="font-medium text-stone-600 leading-relaxed text-base opacity-90">
+                        Sitios y plataformas web modernas, veloces y optimizadas específicamente para convertir visitantes curiosos en clientes recurrentes.
+                      </p>
+                    </div>
+
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-semibold text-blue-800">
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>Desarrollo Next.js</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>UX/UI de Conversión</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>SEO Integrado</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>Diseño Responsivo</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="md:col-span-2 relative w-full aspect-[4/3] md:aspect-square h-full min-h-[200px] rounded-3xl overflow-hidden shadow-inner bg-blue-100/50">
+                    <Image
+                      src="/cases/vertex.png"
+                      alt="Sitios Web Premium"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-8 flex justify-end">
+                  <div className="w-12 h-12 rounded-full bg-white text-blue-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
+                    <ArrowRight className="w-6 h-6 transform -rotate-45 group-hover:rotate-0 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </m.div>
+
+            {/* Card 5: Consultoría 1:1 (col-span-1) */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="lg:col-span-1"
+            >
+              <Link
+                href="/contacto"
+                className="group block h-full bg-indigo-50 text-indigo-900 rounded-[2.5rem] p-8 md:p-10 border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 min-h-[400px] flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <PenTool className="w-7 h-7" />
+                  </div>
+                  <h3 className="font-nunito font-bold text-3xl mb-3 tracking-tight">Consultoría 1:1</h3>
+                  <p className="font-medium text-stone-600 leading-relaxed text-base opacity-90 mb-6">
+                    Sesiones de enfoque intensivo 1-a-1 para diagnosticar y destrabar cuellos de botella en tus ventas.
+                  </p>
+
+                  <ul className="flex flex-col gap-2 text-sm font-semibold text-indigo-800">
+                    <li className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-indigo-600 flex-shrink-0" />
+                      <span>Auditoría Previa Completa</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-indigo-600 flex-shrink-0" />
+                      <span>Plan de Acción en PDF</span>
+                    </li>
+                  </ul>
+                  
+                  <div className="relative w-full h-36 mt-6 rounded-2xl overflow-hidden shadow-inner bg-indigo-100/50">
+                    <Image
+                      src="/work-media/work-8.png"
+                      alt="Consultoría 1 a 1"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-8 flex justify-end">
+                  <div className="w-12 h-12 rounded-full bg-white text-indigo-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
+                    <ArrowRight className="w-6 h-6 transform -rotate-45 group-hover:rotate-0 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </m.div>
+
+            {/* Card 6: CTA Hablemos (col-span-2) */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="lg:col-span-2"
+            >
+              <Link
+                href="/contacto"
+                className="group block h-full bg-teal-700 text-white rounded-[2.5rem] p-8 md:p-10 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 min-h-[400px] flex flex-col justify-between"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center h-full">
+                  <div className="md:col-span-3 flex flex-col gap-6 justify-center">
+                    <div>
+                      <h3 className="font-nunito font-extrabold text-4xl mb-4 tracking-tight leading-tight">
+                        ¿Listo para crear algo increíble?
+                      </h3>
+                      <p className="font-medium text-teal-100 leading-relaxed text-lg">
+                        Platiquemos sobre tus objetivos de negocio y diseñemos una propuesta a la medida de tu marca.
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className="inline-flex items-center gap-3 bg-white text-teal-800 px-8 py-3.5 rounded-full font-bold shadow-md group-hover:bg-teal-50 transition-colors">
+                        Comenzar Proyecto
+                        <ArrowRight className="w-5 h-5 text-teal-700 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="md:col-span-2 relative w-full aspect-[4/3] md:aspect-square h-full min-h-[220px] rounded-3xl overflow-hidden shadow-md bg-teal-800">
+                    <Image
+                      src="/work-media/work-5.jpg"
+                      alt="Taller Creativo con Ely"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+              </Link>
+            </m.div>
+
+          </div>
+
         </div>
       </section>
-
-      {/* 2. DEEP DIVES (Detalle de cada servicio) */}
-      <section className="py-24 lg:py-32 flex flex-col gap-32">
-        {SERVICIOS_DATA.map((service, index) => {
-          const isImageRight = index % 2 === 0;
-          
-          return (
-            <article 
-              key={service.id} 
-              id={service.id} 
-              className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl scroll-mt-28"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                
-                {/* Columna de Texto */}
-                <div className={`flex flex-col gap-10 ${isImageRight ? "lg:order-1" : "lg:order-2"}`}>
-                  <div>
-                    <div className="w-12 h-12 bg-white rounded-2xl shadow-sm border border-stone-200 flex items-center justify-center mb-6">
-                      <service.icon className="w-6 h-6 text-slate-700" />
-                    </div>
-                    <h2 className="font-bricolage font-extrabold text-4xl md:text-5xl text-slate-900 tracking-tight mb-6">
-                      {service.title}
-                    </h2>
-                    <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* El Proceso */}
-                  <div>
-                    <h4 className="text-xs font-bold tracking-[0.2em] text-slate-900 uppercase border-b border-slate-200 pb-3 mb-6">
-                      El Proceso
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                      {service.process.map((p, i) => (
-                        <div key={i} className="flex flex-col gap-2">
-                          <span className="font-semibold text-slate-900 text-sm">
-                            {p.step}
-                          </span>
-                          <span className="text-sm text-slate-500 leading-relaxed">
-                            {p.desc}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Entregables / Tech Specs */}
-                  <div>
-                    <h4 className="text-xs font-bold tracking-[0.2em] text-slate-900 uppercase border-b border-slate-200 pb-3 mb-6">
-                      Especificaciones & Entregables
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {service.deliverables.map((item, i) => (
-                        <span 
-                          key={i} 
-                          className="px-4 py-2 bg-white border border-stone-200 rounded-full text-xs font-semibold text-slate-700 shadow-sm"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Columna de Imagen */}
-                <div className={`w-full h-[400px] md:h-[500px] lg:h-[700px] relative rounded-3xl overflow-hidden shadow-xl ${isImageRight ? "lg:order-2" : "lg:order-1"}`}>
-
-                  {service.detailMediaType === "video" ? (
-                    <LazyVideo
-                      src={service.detailImage}
-                      ariaLabel={`Video de ${service.title}`}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <Image 
-                      src={service.detailImage}
-                      alt={`Detalle de ${service.title}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover"
-                    />
-                  )}
-                </div>
-
-              </div>
-            </article>
-          );
-        })}
-      </section>
-
     </div>
   );
 }

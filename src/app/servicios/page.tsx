@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Servicios from "@/components/sections/Servicios";
+import Metodologia from "@/components/sections/Metodologia";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -12,7 +13,8 @@ export default function ServiciosPage() {
   return (
     <>
       <Servicios />
-      <Footer theme="light" />
+      <Metodologia />
+      <Footer />
     </>
   );
 }

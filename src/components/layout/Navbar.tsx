@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useSyncExternalStore } from "react";
-import { m, AnimatePresence, Variants } from "framer-motion";
-import { Planet } from 'reicon-react';
+import { m, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 interface NavLink {
   label: string;
@@ -19,33 +18,10 @@ const NAV_LINKS: NavLink[] = [
   { label: "Contacto", href: "/contacto" },
 ];
 
-// Mobile menu links animation variants
-const menuVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.15,
-    },
-  },
-};
-
-const linkVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
-
 export function Navbar() {
   const pathname = usePathname();
-  
+  const [isOpen, setIsOpen] = useState(false);
+
   const isScrolled = useSyncExternalStore(
     (callback) => {
       window.addEventListener("scroll", callback, { passive: true });
@@ -55,25 +31,6 @@ export function Navbar() {
     () => false
   );
 
-  const isMobile = useSyncExternalStore(
-    (callback) => {
-      window.addEventListener("resize", callback);
-      return () => window.removeEventListener("resize", callback);
-    },
-    () => window.innerWidth < 768,
-    () => false
-  );
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (!isMobile) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setIsOpen(false);
-    }
-  }, [isMobile]);
-
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -85,163 +42,118 @@ export function Navbar() {
     };
   }, [isOpen]);
 
-  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === "/") {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isMobile) {
-      e.preventDefault();
-      setIsOpen(!isOpen);
-    } else {
-      handleHomeClick(e);
-    }
-  };
-
-  const handleMobileLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    setIsOpen(false);
-    if (href === "/" && pathname === "/") {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
-  // Moved variants outside the component
-
-
-
   return (
     <>
-      <header 
+      <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isOpen
-            ? "bg-transparent"
-            : isScrolled 
-              ? "bg-[#F4F1ED]/90 backdrop-blur-md shadow-sm py-0" 
-              : "bg-transparent py-2"
+          isScrolled ? "py-3" : "py-6"
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="flex items-center justify-between h-20">
+          <nav
+            className={`w-full mx-auto px-6 py-3 flex items-center justify-between rounded-full border transition-all duration-300 ${
+              isScrolled
+                ? "bg-white/80 backdrop-blur-md border-stone-200/50 shadow-md shadow-stone-100/50"
+                : "bg-white/40 backdrop-blur-sm border-stone-100/20"
+            }`}
+          >
+            {/* Logo */}
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="text-2xl font-nunito font-extrabold text-stone-800 tracking-tight hover:opacity-80 transition-opacity"
+            >
+              Ely<span className="text-teal-600">.</span>
+            </Link>
 
-            {/* Left: Logo/Name Text */}
-            <div className="flex-1 flex justify-start">
-              <Link 
-                href="/" 
-                onClick={(e) => {
-                  if (isOpen) setIsOpen(false);
-                  handleHomeClick(e);
-                }}
-                className="text-xl font-bold tracking-tight text-green-950 font-sans"
-              >
-                Ely la publicista
-              </Link>
-            </div>
-
-            {/* Center: The actual image logo (acts as trigger on mobile) */}
-            <div className="flex-shrink-0 flex justify-center">
-              <Link 
-                href="/" 
-                onClick={handleLogoClick} 
-                className="block select-none"
-              >
-                <m.div
-                  animate={{ rotate: (isOpen && isMobile) ? -180 : 0 }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="relative w-12 h-12 cursor-pointer active:scale-95 transition-transform"
-                >
-                  <Planet size={48} className="w-full h-full text-black" />
-                </m.div>
-              </Link>
-            </div>
-
-            {/* Right: Navigation Links (Desktop) */}
-            <nav className="flex-1 hidden md:flex justify-end items-center gap-6">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-1">
               {NAV_LINKS.map((link) => {
                 const isActive = pathname === link.href;
-
                 return (
                   <Link
                     key={link.label}
                     href={link.href}
-                    onClick={link.href === "/" ? handleHomeClick : undefined}
-                    className={`relative text-sm font-bricolage font-medium transition-colors py-1 group ${
-                      isActive ? "text-green-950" : "text-green-800 hover:text-green-950"
+                    className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                      isActive
+                        ? "bg-stone-800 text-white shadow-sm"
+                        : "text-stone-600 hover:text-stone-900 hover:bg-stone-100"
                     }`}
                   >
                     {link.label}
-
-                    {/* Hover underline */}
-                    {!isActive && (
-                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-green-950 group-hover:w-full transition-all duration-300" />
-                    )}
-
-                    {/* Framer Motion animated underline */}
-                    {isActive && (
-                      <m.div
-                        layoutId={isMobile ? undefined : "navbar-underline"}
-                        className="absolute left-0 -bottom-1 w-full h-[2px] bg-green-950"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      />
-                    )}
                   </Link>
                 );
               })}
-            </nav>
-          </div>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-full hover:bg-stone-100 transition-colors md:hidden text-stone-600 focus:outline-none"
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </nav>
         </div>
       </header>
 
-      {/* Full-Screen Mobile Overlay Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
-        {isOpen && isMobile && (
+        {isOpen && (
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 bg-[#F4F1ED]/95 backdrop-blur-md z-40 flex flex-col justify-center items-center"
+            className="fixed inset-0 z-40 bg-stone-900/40 backdrop-blur-md md:hidden flex flex-col justify-end"
           >
+            {/* Click outside to close */}
+            <div className="absolute inset-0" onClick={() => setIsOpen(false)} />
+            
             <m.div
-              variants={menuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              className="flex flex-col items-center gap-8"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="relative bg-white rounded-t-[3rem] p-8 pb-16 flex flex-col gap-6 shadow-2xl w-full"
             >
-              {NAV_LINKS.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <m.div key={link.label} variants={linkVariants}>
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-2xl font-nunito font-extrabold text-stone-800">Menú</span>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 rounded-full bg-stone-50 text-stone-500 hover:bg-stone-100"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                {NAV_LINKS.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
                     <Link
+                      key={link.label}
                       href={link.href}
-                      onClick={(e) => handleMobileLinkClick(e, link.href)}
-                      className={`relative group font-bricolage text-4xl font-semibold tracking-tight transition-colors py-2 block ${
-                        isActive 
-                          ? "text-emerald-600" 
-                          : "text-green-950 hover:text-emerald-600"
+                      onClick={() => setIsOpen(false)}
+                      className={`w-full py-4 px-6 rounded-2xl text-lg font-semibold transition-all ${
+                        isActive
+                          ? "bg-teal-50 text-teal-800"
+                          : "text-stone-600 hover:text-stone-950 hover:bg-stone-50"
                       }`}
                     >
                       {link.label}
-
-                      {/* Hover underline on mobile */}
-                      {!isActive && (
-                        <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-green-950 group-hover:w-full transition-all duration-300" />
-                      )}
-
-                      {/* Active underline on mobile */}
-                      {isActive && (
-                        <span className="absolute left-0 -bottom-1 w-full h-[3px] bg-emerald-600" />
-                      )}
                     </Link>
-                  </m.div>
-                );
-              })}
+                  );
+                })}
+              </div>
+
+              <Link
+                href="/contacto"
+                onClick={() => setIsOpen(false)}
+                className="w-full text-center bg-stone-800 text-white py-4 rounded-full font-medium hover:bg-stone-700 transition-colors mt-4 shadow-sm"
+              >
+                Hablemos
+              </Link>
             </m.div>
           </m.div>
         )}
