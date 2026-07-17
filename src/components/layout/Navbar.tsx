@@ -53,8 +53,8 @@ export function Navbar() {
           <nav
             className={`w-full mx-auto px-6 py-3 flex items-center justify-between rounded-full border transition-all duration-300 ${
               isScrolled
-                ? "bg-white/80 backdrop-blur-md border-stone-200/50 shadow-md shadow-stone-100/50"
-                : "bg-white/40 backdrop-blur-sm border-stone-100/20"
+                ? "bg-white md:bg-white/80 backdrop-blur-none md:backdrop-blur-md border-stone-200/50 shadow-md md:shadow-md shadow-stone-100/50 will-change-transform"
+                : "bg-stone-50 md:bg-white/40 backdrop-blur-none md:backdrop-blur-sm border-stone-100/20"
             }`}
           >
             {/* Logo */}
@@ -105,7 +105,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-stone-900/40 backdrop-blur-md md:hidden flex flex-col justify-end"
+            className="fixed inset-0 z-40 bg-stone-900/80 md:bg-stone-900/40 backdrop-blur-none md:backdrop-blur-md md:hidden flex flex-col justify-end"
           >
             {/* Click outside to close */}
             <div className="absolute inset-0" onClick={() => setIsOpen(false)} />

@@ -137,7 +137,7 @@ export default function Hero() {
                   <div className="absolute inset-0 bg-gradient-to-br from-teal-200 to-rose-200 rounded-[2rem] md:rounded-[3rem] transform rotate-3 scale-105 opacity-60"></div>
                   
                   {/* Main Image */}
-                  <div className="relative w-full h-full rounded-[2rem] md:rounded-[3rem] shadow-lg md:shadow-2xl md:shadow-stone-300/50 overflow-hidden bg-white border-[4px] md:border-[6px] border-white">
+                  <div className="relative w-full h-full rounded-[2rem] md:rounded-[3rem] shadow-none md:shadow-2xl md:shadow-stone-300/50 overflow-hidden bg-white border-[4px] md:border-[6px] border-stone-100 md:border-white">
                      <Image 
                        src="/cases/lumina.png"
                        alt="Ely la publicista - Consultora de Marketing"
@@ -153,7 +153,7 @@ export default function Hero() {
                     custom={isMobile}
                     variants={floatingVariants}
                     animate="animate"
-                    className="absolute -left-2 md:-left-12 top-10 md:top-20 bg-white/95 md:bg-white/70 backdrop-blur-none md:backdrop-blur-md border border-stone-200 md:border-white/60 shadow-md md:shadow-xl rounded-xl md:rounded-2xl p-3 md:p-4 flex items-center gap-3 md:gap-4 z-20"
+                    className="absolute -left-2 md:-left-12 top-10 md:top-20 bg-white md:bg-white/70 backdrop-blur-none md:backdrop-blur-md border border-stone-200 md:border-white/60 shadow-sm md:shadow-xl rounded-xl md:rounded-2xl p-3 md:p-4 flex items-center gap-3 md:gap-4 z-20"
                   >
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center shadow-inner">
                       <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />
@@ -169,7 +169,7 @@ export default function Hero() {
                     custom={isMobile}
                     variants={floatingReverseVariants}
                     animate="animate"
-                    className="absolute -right-2 md:-right-8 bottom-12 md:bottom-24 bg-white/95 md:bg-white/70 backdrop-blur-none md:backdrop-blur-md border border-stone-200 md:border-white/60 shadow-md md:shadow-xl rounded-xl md:rounded-2xl p-3 md:p-4 flex items-center gap-3 md:gap-4 z-20"
+                    className="absolute -right-2 md:-right-8 bottom-12 md:bottom-24 bg-white md:bg-white/70 backdrop-blur-none md:backdrop-blur-md border border-stone-200 md:border-white/60 shadow-sm md:shadow-xl rounded-xl md:rounded-2xl p-3 md:p-4 flex items-center gap-3 md:gap-4 z-20"
                   >
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center shadow-inner">
                       <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
@@ -185,7 +185,7 @@ export default function Hero() {
       </div>
       
       {/* Background Decorative Soft Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden md:block">
          <div className="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-teal-100 rounded-full blur-[80px] md:blur-[120px] opacity-40 md:opacity-60 mix-blend-multiply" />
          <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-rose-100 rounded-full blur-[80px] md:blur-[120px] opacity-40 md:opacity-60 mix-blend-multiply" />
       </div>

@@ -66,8 +66,8 @@ export default function Clientes() {
     <div className="w-full bg-stone-50">
       
       {/* Soft Infinite Marquee */}
-      <div className="w-full overflow-hidden bg-white py-8 border-b border-stone-200 flex flex-nowrap whitespace-nowrap">
-        <div className="flex shrink-0 animate-[marquee_25s_linear_infinite] min-w-full items-center justify-around gap-16 px-8">
+      <div className="w-full overflow-x-auto md:overflow-hidden bg-white py-8 border-b border-stone-200 flex flex-nowrap whitespace-nowrap">
+        <div className="flex shrink-0 animate-none md:animate-[marquee_25s_linear_infinite] min-w-full items-center justify-start md:justify-around gap-16 px-8">
           {MARQUEE_ITEMS.map((item, idx) => (
             <div key={idx} className="flex shrink-0 items-center gap-16">
               <span className="font-nunito font-bold text-3xl md:text-5xl text-stone-300 tracking-tight">{item}</span>
@@ -76,7 +76,7 @@ export default function Clientes() {
           ))}
         </div>
         {/* Duplicate for seamless looping */}
-        <div className="flex shrink-0 animate-[marquee_25s_linear_infinite] min-w-full items-center justify-around gap-16 px-8" aria-hidden="true">
+        <div className="hidden md:flex shrink-0 animate-[marquee_25s_linear_infinite] min-w-full items-center justify-around gap-16 px-8" aria-hidden="true">
           {MARQUEE_ITEMS.map((item, idx) => (
             <div key={`dup-${idx}`} className="flex shrink-0 items-center gap-16">
               <span className="font-nunito font-bold text-3xl md:text-5xl text-stone-300 tracking-tight">{item}</span>
