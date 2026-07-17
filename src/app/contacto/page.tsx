@@ -3,9 +3,9 @@ import Contacto from "@/components/sections/Contacto";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Contacto | Casa Nómada",
+  title: "Contacto | Ely la publicista",
   description:
-    "Ponte en contacto con Casa Nómada — hablemos de tu próximo proyecto creativo.",
+    "Ponte en contacto conmigo — hablemos de tu próximo proyecto y cómo impulsar tu negocio.",
 };
 
 export default function ContactoPage() {

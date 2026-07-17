@@ -49,13 +49,13 @@ export default function Contacto() {
             {/* Contact details */}
             <div className="flex flex-col gap-4">
               <a
-                href="mailto:info@casanomada.com.mx"
+                href="mailto:elygomez.mkt@gmail.com"
                 className="inline-flex items-center gap-3 text-slate-900 font-medium hover:text-slate-700 transition-colors group"
               >
                 <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center group-hover:bg-slate-700 transition-colors">
                   <Mail className="w-4 h-4 text-white" strokeWidth={2} />
                 </div>
-                info@casanomada.com.mx
+                elygomez.mkt@gmail.com
               </a>
             </div>
           </div>

@@ -17,7 +17,7 @@ const BACKGROUND_IMAGES = [
 
 export default function FloatingBackground() {
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden bg-transparent">
+    <div className="hidden md:block absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden bg-transparent">
       {BACKGROUND_IMAGES.map((img, index) => (
         <m.div
           key={index}

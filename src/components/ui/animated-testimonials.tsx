@@ -156,7 +156,7 @@ export function AnimatedTestimonials({
 
                   <div className="relative mb-6 flex-1">
                     <Quote className="absolute -top-4 -left-4 h-12 w-12 text-slate-100 rotate-180 -z-10 group-hover:text-slate-200 transition-colors" />
-                    <p className="relative z-10 text-lg font-medium leading-relaxed text-slate-600 group-hover:text-slate-700 transition-colors">"{testimonial.content}"</p>
+                    <p className="relative z-10 text-lg font-medium leading-relaxed text-slate-600 group-hover:text-slate-700 transition-colors">&quot;{testimonial.content}&quot;</p>
                   </div>
 
                   <Separator className="my-4 bg-stone-100" />

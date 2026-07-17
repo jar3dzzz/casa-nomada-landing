@@ -7,9 +7,9 @@ import { m } from "framer-motion";
 
 /* ─── Title lines for staggered reveal ─── */
 const titleLines = [
-  { text: "Creatividad", highlight: false },
-  { text: "que transforma", highlight: false },
-  { text: "marcas.", highlight: true },
+  { text: "Impulso tu marca", highlight: false },
+  { text: "con marketing", highlight: false },
+  { text: "estratégico.", highlight: true },
 ];
 
 /* ─── Framer Motion variants ─── */
@@ -52,7 +52,7 @@ const imageVariants = {
   },
 };
 
-const descriptionWords = "Una célula creativa basada en Villahermosa y Monterrey, estructurando marcas de hospitalidad y comercio premium.".split(" ");
+const descriptionWords = "Diseño estrategias de publicidad y contenido que hacen crecer tu negocio, conectando genuinamente con tu audiencia.".split(" ");
 
 const wordContainerVariants = {
   hidden: { opacity: 0 },
@@ -84,28 +84,28 @@ function HeroGeometry() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute -top-16 -right-20 w-[380px] h-[380px] rounded-full border border-slate-300/20"
+        className="absolute -top-16 -right-20 w-[380px] h-[380px] rounded-full border border-green-800/20"
       />
       {/* Small circle — left side */}
       <m.div
         initial={{ opacity: 0, scale: 0.6 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-[60%] -left-12 w-[140px] h-[140px] rounded-full border border-slate-300/15"
+        className="absolute top-[60%] -left-12 w-[140px] h-[140px] rounded-full border border-green-800/15"
       />
       {/* Offset square — behind text area */}
       <m.div
         initial={{ opacity: 0, rotate: 8 }}
         animate={{ opacity: 1, rotate: 12 }}
         transition={{ duration: 1.2, delay: 0.5 }}
-        className="absolute top-[15%] left-[8%] w-[180px] h-[180px] border border-slate-300/10"
+        className="absolute top-[15%] left-[8%] w-[180px] h-[180px] border border-green-800/10"
       />
       {/* Thin horizontal line accent */}
       <m.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.4, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-[18%] left-0 w-[30%] h-px bg-gradient-to-r from-transparent via-slate-300/30 to-transparent origin-left"
+        className="absolute bottom-[18%] left-0 w-[30%] h-px bg-gradient-to-r from-transparent via-green-800/30 to-transparent origin-left"
       />
     </div>
   );
@@ -118,29 +118,30 @@ function ImageFrame({ className }: { className: string }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.0, delay: 0.8 }}
-      className={`absolute border border-slate-400/15 rounded-[2.5rem] pointer-events-none ${className}`}
+      className={`absolute border border-green-800/15 rounded-[2.5rem] pointer-events-none ${className}`}
     />
   );
 }
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center pt-32 pb-20 lg:pt-40 lg:pb-24">
+    <section className="relative w-full min-h-screen flex flex-col justify-center pt-32 pb-20 lg:pt-20 lg:pb-24">
       {/* Geometric decoration layer */}
       <HeroGeometry />
 
       {/* Vibrant Gradient Mesh / Color Splashes (Anchored to top of page) */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none -z-20 overflow-visible">
+      {/* hidden on mobile to drastically improve performance */}
+      <div className="hidden md:block absolute inset-0 w-full h-full pointer-events-none -z-20 overflow-visible">
         <div
-          className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-300/40 rounded-full blur-[120px] mix-blend-multiply"
+          className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-600/15 rounded-full blur-[120px] mix-blend-multiply"
           aria-hidden="true"
         />
         <div
-          className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-rose-300/40 rounded-full blur-[120px] mix-blend-multiply"
+          className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-green-700/15 rounded-full blur-[120px] mix-blend-multiply"
           aria-hidden="true"
         />
         <div
-          className="absolute top-[30%] left-[20%] w-[400px] h-[400px] bg-amber-300/30 rounded-full blur-[120px] mix-blend-multiply"
+          className="absolute top-[30%] left-[20%] w-[400px] h-[400px] bg-teal-600/15 rounded-full blur-[120px] mix-blend-multiply"
           aria-hidden="true"
         />
       </div>
@@ -155,13 +156,13 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
             >
-              <h1 className="font-bricolage font-extrabold text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tighter text-slate-900 leading-[1.05] text-balance mb-6">
+              <h1 className="font-bricolage font-extrabold text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tighter text-green-950 leading-[1.05] text-balance mb-6">
                 {titleLines.map((line, index) => (
                   <span key={index} className="block overflow-hidden py-1">
                     <m.span
                       variants={lineVariants}
                       className={`block origin-bottom-left ${
-                        line.highlight ? "text-amber-700/90 italic" : ""
+                        line.highlight ? "text-emerald-700/90 italic" : ""
                       }`}
                     >
                       {line.text}
@@ -175,7 +176,7 @@ export default function Hero() {
                 variants={wordContainerVariants}
                 initial="hidden"
                 animate="visible"
-                className="text-lg md:text-xl text-slate-600 max-w-lg leading-relaxed mb-8 font-medium"
+                className="text-lg md:text-xl text-green-800 max-w-lg leading-relaxed mb-8 font-medium"
               >
                 {descriptionWords.map((word, i) => (
                   <m.span
@@ -194,7 +195,7 @@ export default function Hero() {
               >
                 <Link
                   href="/contacto"
-                  className="inline-flex items-center justify-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full font-medium hover:bg-slate-800 hover:shadow-xl hover:scale-105 transition-all duration-300 group"
+                  className="inline-flex items-center justify-center gap-3 bg-green-950 text-white px-8 py-4 rounded-full font-medium hover:bg-green-900 hover:shadow-xl hover:scale-105 transition-all duration-300 group"
                 >
                   Iniciar proyecto
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -202,7 +203,7 @@ export default function Hero() {
 
                 <Link
                   href="/clientes"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-slate-900 border border-slate-900/10 bg-white/10 backdrop-blur-sm hover:bg-white/40 hover:border-slate-900/20 transition-all duration-300"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-green-950 border border-green-950/10 bg-white/10 backdrop-blur-sm hover:bg-white/40 hover:border-green-950/20 transition-all duration-300"
                 >
                   Ver portafolio
                 </Link>
@@ -228,14 +229,14 @@ export default function Hero() {
                 className="absolute right-0 top-0 w-[85%] h-[80%] rounded-[2.5rem] overflow-hidden bg-stone-200 shadow-2xl z-10"
               >
                 <Image
-                  src="/hero.png"
-                  alt="Dirección de arte Casa Nómada"
+                  src="/cases/lumina.png"
+                  alt="Estrategia Ely la publicista"
                   priority
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-slate-900/5 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-green-950/5 mix-blend-overlay" />
               </m.div>
 
               {/* Offset frame behind secondary image */}
@@ -247,8 +248,8 @@ export default function Hero() {
                 className="absolute left-0 sm:left-[-4%] lg:left-[-8%] bottom-[5%] w-[65%] h-[55%] rounded-[2rem] overflow-hidden bg-stone-300 shadow-xl border-8 border-[#F4F1ED] z-20"
               >
                 <Image
-                  src="/ola.jpg"
-                  alt="Detalle de diseño Casa Nómada"
+                  src="/cases/vertex.png"
+                  alt="Detalle de diseño Ely la publicista"
                   priority
                   fill
                   sizes="(max-width: 1024px) 100vw, 30vw"
@@ -261,7 +262,7 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, delay: 1.0 }}
-                className="absolute -bottom-4 right-[30%] w-[80px] h-[80px] rounded-full border border-slate-300/25 z-[25]"
+                className="absolute -bottom-4 right-[30%] w-[80px] h-[80px] rounded-full border border-green-800/25 z-[25]"
               />
             </m.div>
           </div>

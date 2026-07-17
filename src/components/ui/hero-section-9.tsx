@@ -1,11 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import { m } from "framer-motion";
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import React from 'react';
+import Link from "next/link";
 
 interface StatProps { value: string; label: string; icon: React.ReactNode; }
-interface ActionProps { text: string; onClick: () => void; variant?: ButtonProps['variant']; className?: string; }
+interface ActionProps { text: string; onClick?: () => void; href?: string; variant?: ButtonProps['variant']; className?: string; }
 interface HeroSectionProps { title: React.ReactNode; subtitle: string; actions: ActionProps[]; stats: StatProps[]; images: string[]; className?: string; }
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } };
@@ -26,11 +29,14 @@ const HeroSection = ({ title, subtitle, actions, stats, images, className }: Her
             {subtitle}
           </m.p>
           <m.div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start" variants={itemVariants}>
-            {actions.map((action, index) => (
-              <Button className={action.className} key={index} onClick={action.onClick} size="lg" variant={action.variant}>
-                {action.text}
-              </Button>
-            ))}
+            {actions.map((action, index) => {
+              const btn = (
+                <Button className={action.className} key={`btn-${index}`} onClick={action.onClick} size="lg" variant={action.variant}>
+                  {action.text}
+                </Button>
+              );
+              return action.href ? <Link href={action.href} key={index}>{btn}</Link> : btn;
+            })}
           </m.div>
           <m.div className="mt-12 flex flex-wrap justify-center gap-8 lg:justify-start" variants={itemVariants}>
             {stats.map((stat, index) => (

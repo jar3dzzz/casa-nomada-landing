@@ -3,80 +3,81 @@
 import { useState } from "react";
 import Image from "next/image";
 import { m, AnimatePresence } from "framer-motion";
+import { LazyVideo } from "@/components/ui/lazy-video";
 import { ArrowRight, Code, PenTool, Lightbulb, Camera, TrendingUp } from "lucide-react";
 
 // Dummy Data para los Servicios
 const SERVICIOS_DATA = [
   {
     id: "estrategia",
-    title: "Estrategia",
+    title: "Estrategia Digital",
     icon: Lightbulb,
-    heroImage: "/ola.jpg",
-    detailImage: "/ola.jpg",
-    description: "Analizamos tu mercado, competencia y audiencia para definir un rumbo claro. No damos pasos a ciegas; construimos los cimientos para que tu marca se posicione como un referente premium.",
+    heroImage: "/cases/lumina.png",
+    detailImage: "/cases/lumina.png",
+    description: "Auditoría, investigación de mercado y roadmap. Construyo los cimientos para que tu marca se posicione y conecte con su audiencia.",
     process: [
       { step: "1. Descubrimiento", desc: "Auditoría profunda de tu marca y mercado." },
       { step: "2. Planificación", desc: "Definición de objetivos, KPIs y rutas de acción." },
       { step: "3. Ejecución", desc: "Implementación estratégica guiada por data." }
     ],
-    deliverables: ["Brand Compass", "Estudio de Mercado", "Roadmap Estratégico", "Definición de Arquetipos"]
+    deliverables: ["Estudio de Mercado", "Roadmap Estratégico", "Análisis de Competencia", "Plan de Acción"]
+  },
+  {
+    id: "pautas",
+    title: "Gestión de Pautas",
+    icon: TrendingUp,
+    heroImage: "/cases/vertex.png",
+    detailImage: "/cases/vertex.png",
+    description: "Gestión y optimización de campañas publicitarias en Meta y Google Ads. Diseño funnels y segmento audiencias para maximizar tu retorno de inversión.",
+    process: [
+      { step: "1. Estructura", desc: "Diseño del funnel de ventas y segmentación de audiencias." },
+      { step: "2. Lanzamiento", desc: "Configuración técnica y despliegue de los anuncios." },
+      { step: "3. Optimización", desc: "Monitoreo diario, pruebas A/B y escalado." }
+    ],
+    deliverables: ["Campañas en Meta Ads", "Campañas en Google Ads", "Reportes de Rendimiento", "Optimización de Presupuesto"]
   },
   {
     id: "contenido",
     title: "Creación de Contenido",
     icon: Camera,
-    heroImage: "/work-media/work-2.jpg",
-    detailImage: "/work-media/work-8.mp4",
+    heroImage: "/work-media/work-2.webp",
+    detailImage: "/ely.mp4",
     detailMediaType: "video" as const,
-    description: "Producimos narrativas visuales exquisitas que capturan la esencia de tu marca. Desde fotografía editorial hasta video de alto impacto, creamos assets que inspiran y convierten.",
+    description: "Dirección creativa y producción de narrativas visuales. Produzco contenido que captura la esencia de tu marca e inspira a tu audiencia.",
     process: [
-      { step: "1. Pre-Producción", desc: "Moodboards, guiones y dirección de arte." },
-      { step: "2. Producción", desc: "Shooting con equipo de nivel cinematográfico." },
-      { step: "3. Post-Producción", desc: "Edición, color grading y diseño sonoro." }
+      { step: "1. Pre-Producción", desc: "Planeación, guiones y dirección de arte." },
+      { step: "2. Producción", desc: "Creación de contenido visual de alta calidad." },
+      { step: "3. Edición", desc: "Post-producción y formato para redes sociales." }
     ],
-    deliverables: ["Fotografía Comercial", "Video Reels", "Campaña Publicitaria", "Dirección de Arte"]
+    deliverables: ["Fotografía Comercial", "Video Reels", "Dirección de Arte", "Guiones de Contenido"]
   },
   {
-    id: "ads",
-    title: "Campañas de Ads",
-    icon: TrendingUp,
-    heroImage: "/work-media/work-1.jpg",
-    detailImage: "/work-media/work-1.jpg",
-    description: "Gestión y optimización de campañas publicitarias en Meta, Google y TikTok. Maximiza tu retorno de inversión con estrategias data-driven enfocadas en resultados medibles.",
-    process: [
-      { step: "1. Estructura", desc: "Diseño del funnel de ventas y segmentación de audiencias." },
-      { step: "2. Lanzamiento", desc: "Configuración técnica y despliegue de los anuncios." },
-      { step: "3. Optimización", desc: "Monitoreo diario, pruebas A/B y escalado del presupuesto." }
-    ],
-    deliverables: ["Meta Ads", "Google Ads", "Reportes de Rendimiento", "Setup de Píxeles"]
-  },
-  {
-    id: "desarrollo",
-    title: "Desarrollo Web",
-    icon: Code,
-    heroImage: "/work-media/services.png",
-    detailImage: "/work-media/work-4.jpg",
-    description: "Diseñamos y desarrollamos arquitecturas modernas, ultra rápidas y escalables. Construimos experiencias digitales inmersivas utilizando React, Next.js, TypeScript y Tailwind CSS, respaldadas por un backend robusto en Node.js.",
-    process: [
-      { step: "1. UX / UI Design", desc: "Wireframes y diseño de interfaces premium." },
-      { step: "2. Desarrollo", desc: "Código limpio, tipado y optimizado para SEO." },
-      { step: "3. Lanzamiento", desc: "Testing, despliegue y monitoreo de performance." }
-    ],
-    deliverables: ["Frontend en Next.js/React", "Backend en Node.js", "Animaciones Framer Motion", "Tailwind CSS", "TypeScript"]
-  },
-  {
-    id: "branding",
-    title: "Branding",
+    id: "consultoria",
+    title: "Consultoría 1:1",
     icon: PenTool,
-    heroImage: "/cases/unilabor.jpg",
-    detailImage: "/cases/unilabor.jpg",
-    description: "Dotamos a tu negocio de una identidad visual y verbal inconfundible. Diseñamos logotipos, paletas tipográficas y manuales de identidad que proyectan lujo, profesionalismo y autenticidad.",
+    heroImage: "/cases/vertex.png",
+    detailImage: "/cases/vertex.png",
+    description: "Sesiones estratégicas personalizadas para destrabar el crecimiento de tu negocio. Analizamos tu situación actual y definimos los siguientes pasos tácticos.",
     process: [
-      { step: "1. Conceptualización", desc: "Búsqueda del ADN visual de la marca." },
-      { step: "2. Diseño Visual", desc: "Creación de logotipos, tipografía y color." },
-      { step: "3. Sistematización", desc: "Desarrollo del Brand Book y aplicaciones." }
+      { step: "1. Diagnóstico", desc: "Evaluación inicial de tus retos y objetivos." },
+      { step: "2. Sesión Estratégica", desc: "Consultoría intensiva 1 a 1." },
+      { step: "3. Plan de Acción", desc: "Entrega de pasos tácticos a implementar." }
     ],
-    deliverables: ["Manual de Identidad", "Diseño de Logotipo", "Papelería Corporativa", "Guía de Estilo Visual"]
+    deliverables: ["Sesión de 60-90 min", "Grabación de la Sesión", "Documento de Diagnóstico", "Plan Táctico Inmediato"]
+  },
+  {
+    id: "web",
+    title: "Páginas Web",
+    icon: Code,
+    heroImage: "/work-media/work-4.jpg",
+    detailImage: "/work-media/work-4.jpg",
+    description: "Diseño y desarrollo de sitios web modernos, rápidos y optimizados para convertir visitantes en clientes.",
+    process: [
+      { step: "1. UX / UI Design", desc: "Wireframes y diseño de interfaces." },
+      { step: "2. Desarrollo", desc: "Código optimizado para SEO y velocidad." },
+      { step: "3. Lanzamiento", desc: "Testing y despliegue del sitio web." }
+    ],
+    deliverables: ["Landing Pages", "Sitios Corporativos", "Mantenimiento Web", "Optimización SEO"]
   }
 ];
 
@@ -134,10 +135,10 @@ export default function Servicios() {
 
               <div className="mt-auto border-l-2 border-slate-300 pl-6 hidden lg:block">
                 <span className="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase block mb-2">
-                  NUESTRO ENFOQUE
+                  MI ENFOQUE
                 </span>
                 <p className="text-sm text-slate-600 max-w-sm leading-relaxed">
-                  No vendemos entregables; construimos ecosistemas de marca. Cada disciplina técnica en nuestro arsenal está enfocada en un solo objetivo: posicionar tu negocio en lo más alto de su industria.
+                  No vendo entregables sueltos; construyo sistemas de ventas y contenido. Cada táctica en mi arsenal está enfocada en un solo objetivo: posicionar tu negocio y aumentar tus ingresos.
                 </p>
               </div>
             </div>
@@ -237,15 +238,11 @@ export default function Servicios() {
 
                 {/* Columna de Imagen */}
                 <div className={`w-full h-[400px] md:h-[500px] lg:h-[700px] relative rounded-3xl overflow-hidden shadow-xl ${isImageRight ? "lg:order-2" : "lg:order-1"}`}>
-                  {/* @ts-ignore - Ignore optional property not existing on all elements */}
+
                   {service.detailMediaType === "video" ? (
-                    <video
+                    <LazyVideo
                       src={service.detailImage}
-                      aria-label={`Video de ${service.title}`}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
+                      ariaLabel={`Video de ${service.title}`}
                       className="w-full h-full object-cover"
                     />
                   ) : (

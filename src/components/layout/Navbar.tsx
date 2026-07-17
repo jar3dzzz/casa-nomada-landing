@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useSyncExternalStore } from "react";
 import { m, AnimatePresence, Variants } from "framer-motion";
+import { Planet } from 'reicon-react';
 
 interface NavLink {
   label: string;
@@ -67,6 +68,7 @@ export function Navbar() {
 
   useEffect(() => {
     if (!isMobile) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsOpen(false);
     }
   }, [isMobile]);
@@ -133,9 +135,9 @@ export function Navbar() {
                   if (isOpen) setIsOpen(false);
                   handleHomeClick(e);
                 }}
-                className="text-xl font-bold tracking-tight text-slate-900 font-sans"
+                className="text-xl font-bold tracking-tight text-green-950 font-sans"
               >
-                Casa Nómada
+                Ely la publicista
               </Link>
             </div>
 
@@ -151,14 +153,7 @@ export function Navbar() {
                   transition={{ duration: 0.25, ease: "easeOut" }}
                   className="relative w-12 h-12 cursor-pointer active:scale-95 transition-transform"
                 >
-                  <Image
-                    src="/logo.png"
-                    alt="Casa Nómada Logo"
-                    fill
-                    sizes="48px"
-                    className="object-contain"
-                    priority
-                  />
+                  <Planet size={48} className="w-full h-full text-black" />
                 </m.div>
               </Link>
             </div>
@@ -174,21 +169,21 @@ export function Navbar() {
                     href={link.href}
                     onClick={link.href === "/" ? handleHomeClick : undefined}
                     className={`relative text-sm font-bricolage font-medium transition-colors py-1 group ${
-                      isActive ? "text-slate-900" : "text-slate-600 hover:text-slate-900"
+                      isActive ? "text-green-950" : "text-green-800 hover:text-green-950"
                     }`}
                   >
                     {link.label}
 
                     {/* Hover underline */}
                     {!isActive && (
-                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-slate-900 group-hover:w-full transition-all duration-300" />
+                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-green-950 group-hover:w-full transition-all duration-300" />
                     )}
 
                     {/* Framer Motion animated underline */}
                     {isActive && (
                       <m.div
                         layoutId={isMobile ? undefined : "navbar-underline"}
-                        className="absolute left-0 -bottom-1 w-full h-[2px] bg-slate-900"
+                        className="absolute left-0 -bottom-1 w-full h-[2px] bg-green-950"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -228,20 +223,20 @@ export function Navbar() {
                       onClick={(e) => handleMobileLinkClick(e, link.href)}
                       className={`relative group font-bricolage text-4xl font-semibold tracking-tight transition-colors py-2 block ${
                         isActive 
-                          ? "text-orange-500" 
-                          : "text-slate-900 hover:text-orange-500"
+                          ? "text-emerald-600" 
+                          : "text-green-950 hover:text-emerald-600"
                       }`}
                     >
                       {link.label}
 
                       {/* Hover underline on mobile */}
                       {!isActive && (
-                        <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-slate-900 group-hover:w-full transition-all duration-300" />
+                        <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-green-950 group-hover:w-full transition-all duration-300" />
                       )}
 
                       {/* Active underline on mobile */}
                       {isActive && (
-                        <span className="absolute left-0 -bottom-1 w-full h-[3px] bg-orange-500" />
+                        <span className="absolute left-0 -bottom-1 w-full h-[3px] bg-emerald-600" />
                       )}
                     </Link>
                   </m.div>

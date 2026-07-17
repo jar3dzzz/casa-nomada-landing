@@ -1,18 +1,17 @@
 "use client";
 
 import Image from "next/image";
-
+import { Planet } from 'reicon-react';
 const COLLABORATORS = [
-  { id: "2ndfloor", name: "2nd Floor", src: "/cases/logos/2ndfloor-logo.png" },
-  { id: "715", name: "715", src: "/cases/logos/715-logo.png" },
-  { id: "laut", name: "Laut", src: "/cases/logos/laut-logo.png" },
-  { id: "mardo", name: "Mardo", src: "/cases/logos/mardo-logo.png" },
-  { id: "madan", name: "Madan", src: "/cases/logos/madan-logo.jpg.png" },
-  { id: "unilabor", name: "Unilabor", src: "/cases/logos/unilabor-logo.png" },
-  { id: "belafiori", name: "Belafiori", src: "/cases/logos/belafiori-logo.png" },
-  { id: "edoarda", name: "Edoarda", src: "/cases/logos/edoarda-logo.png" },
-  { id: "multitask", name: "Multitask", src: "/cases/logos/multitask.png" },
-  { id: "caimito", name: "Caimito", src: "/cases/logos/caimito-logo.png" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/planet-outline.svg" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/planet-outline.svg" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/planet-outline.svg" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/planet-outline.svg" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/planet-outline.svg" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/planet-outline.svg" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/planet-outline.svg" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/planet-outline.svg" },
+  { id: "belafiori", name: "Belafiori", src: "/cases/logos/planet-outline.svg" },
 ];
 
 export default function CollaboratorsSlider() {
@@ -23,13 +22,7 @@ export default function CollaboratorsSlider() {
           {/* We duplicate the array to create the infinite scroll effect */}
           {[...COLLABORATORS, ...COLLABORATORS].map((collaborator, index) => (
             <li key={`${collaborator.id}-${index}`} className="relative w-32 h-16 md:w-40 md:h-20 flex-shrink-0">
-              <Image
-                src={collaborator.src}
-                alt={collaborator.name}
-                fill
-                sizes="(max-width: 768px) 128px, 160px"
-                className="object-contain brightness-0 opacity-70 hover:opacity-100 transition-opacity duration-300 drop-shadow-sm"
-              />
+              <Planet size={80} className="w-full h-full text-black opacity-70 hover:opacity-100 transition-opacity duration-300 drop-shadow-sm" />
             </li>
           ))}
         </ul>

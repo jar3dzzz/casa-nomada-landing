@@ -3,9 +3,9 @@ import Servicios from "@/components/sections/Servicios";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Servicios | Casa Nómada",
+  title: "Servicios | Ely la publicista",
   description:
-    "Estrategia, Creación de Contenido, Branding y Desarrollo Web. Construimos ecosistemas de marca premium.",
+    "Estrategia, pautas, contenido y consultoría para marcas de alto valor.",
 };
 
 export default function ServiciosPage() {

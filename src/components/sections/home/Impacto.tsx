@@ -32,7 +32,7 @@ const fadeUpVariants = {
 
 export default function Impacto() {
   return (
-    <section className="py-24 lg:py-32 bg-slate-900 text-white relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-green-950 text-white relative overflow-hidden">
       {/* Geometric decorations — light strokes on dark */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[10%] right-[10%] w-[300px] h-[300px] rounded-full border border-white/5" />
@@ -66,9 +66,9 @@ export default function Impacto() {
           <m.div variants={fadeUpVariants}>
             <h2 className="font-bricolage font-extrabold text-3xl lg:text-4xl tracking-tight mb-6 leading-tight">
               Diseño que trasciende. <br />
-              <span className="text-slate-400">Resultados que perduran.</span>
+              <span className="text-green-400">Resultados que perduran.</span>
             </h2>
-            <p className="text-slate-300 text-lg leading-relaxed max-w-lg">
+            <p className="text-green-200/90 text-lg leading-relaxed max-w-lg">
               No hacemos proyectos para llenar portafolios; construimos sistemas
               y estéticas que impulsan el crecimiento y conectan profundamente
               con tu audiencia.
@@ -94,7 +94,7 @@ export default function Impacto() {
                 >
                   {metric.value}
                 </m.span>
-                <span className="text-sm font-medium uppercase tracking-[0.1em] text-slate-400">
+                <span className="text-sm font-medium uppercase tracking-[0.1em] text-green-400">
                   {metric.label}
                 </span>
               </m.div>
