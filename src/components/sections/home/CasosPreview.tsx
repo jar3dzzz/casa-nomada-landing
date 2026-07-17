@@ -1,12 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { m } from "framer-motion";
 import { LazyVideo } from "@/components/ui/lazy-video";
-import { Planet } from 'reicon-react';
-/* ─── Case study data ─── */
+import { m } from "framer-motion";
+
 interface CaseStudy {
   id: string;
   title: string;
@@ -14,6 +12,8 @@ interface CaseStudy {
   videoSrc: string;
   logoSrc: string;
   logoAlt: string;
+  description: string;
+  metrics: string[];
 }
 
 const CASE_STUDIES: CaseStudy[] = [
@@ -21,6 +21,8 @@ const CASE_STUDIES: CaseStudy[] = [
     id: "kairos",
     title: "Kairós",
     category: "Estrategia & Contenido",
+    description: "Desarrollo de una identidad verbal y visual coherente que aumentó la retención de clientes en un 40%.",
+    metrics: ["+40% Retención", "+2M Alcance"],
     videoSrc: "/ely.mp4",
     logoSrc: "/cases/logos/planet-outline.svg",
     logoAlt: "Logo de Kairós",
@@ -29,165 +31,119 @@ const CASE_STUDIES: CaseStudy[] = [
     id: "nova",
     title: "Nova Apparel",
     category: "Marketing Digital",
+    description: "Campaña integral de posicionamiento para una nueva línea de ropa de alto rendimiento, logrando agotar stock en 48 horas.",
+    metrics: ["+350% ROAS", "Sold Out 48h"],
     videoSrc: "/ely.mp4",
     logoSrc: "/cases/logos/planet-outline.svg",
     logoAlt: "Logo de Nova",
   },
 ];
 
-/* ─── Framer Motion variants ─── */
-const sectionVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
-
-const fadeUpVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
-
-/* ─── Geometric Card Frame ─── */
-function CardGeometry({ variant }: { variant: "left" | "right" }) {
-  return (
-    <div className="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
-      {/* Offset square frames behind the card */}
-      <div
-        className={`absolute border border-slate-300/12 rounded-2xl ${
-          variant === "left"
-            ? "-top-3 -left-3 w-full h-full"
-            : "-top-3 -right-3 w-full h-full"
-        }`}
-      />
-      <div
-        className={`absolute border border-slate-200/8 rounded-2xl ${
-          variant === "left"
-            ? "-top-6 -left-6 w-full h-full"
-            : "-top-6 -right-6 w-full h-full"
-        }`}
-      />
-      {/* Floating circle accent */}
-      <m.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, delay: 0.5 }}
-        className={`absolute rounded-full border border-slate-300/20 ${
-          variant === "left"
-            ? "-bottom-8 -right-8 w-[100px] h-[100px]"
-            : "-bottom-8 -left-8 w-[120px] h-[120px]"
-        }`}
-      />
-    </div>
-  );
-}
-
 export default function CasosPreview() {
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden">
-      {/* Section-level geometric decoration */}
-      <div className="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
-        <div className="absolute top-[10%] right-[5%] w-[240px] h-[240px] rounded-full border border-slate-300/10" />
-        <div className="absolute bottom-[5%] left-[3%] w-[180px] h-[180px] rounded-full border border-slate-200/10" />
-        <div
-          className="absolute top-[40%] left-[50%] w-[140px] h-[140px] border border-slate-200/8"
-          style={{ transform: "rotate(15deg)" }}
-        />
-      </div>
-
+    <section className="py-24 lg:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Header */}
-        <m.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={sectionVariants}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-16 gap-6"
-        >
-          <m.div variants={fadeUpVariants}>
-            <h2 className="font-bricolage font-extrabold text-3xl lg:text-4xl text-green-950 tracking-tight">
-              Casos de Estudio
+        
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+          <m.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="font-nunito font-extrabold text-4xl md:text-5xl lg:text-6xl text-stone-800 tracking-tight leading-tight">
+              Casos de Éxito
             </h2>
-            <p className="text-green-800 mt-4 max-w-md">
-              Un vistazo a mis colaboraciones recientes. Marcas que
-              confiaron en mi visión para escalar al siguiente nivel.
+            <p className="font-medium text-lg md:text-xl text-stone-500 mt-4 max-w-md">
+              Un vistazo a mis colaboraciones recientes. Marcas que confiaron en mi visión.
             </p>
           </m.div>
 
-          <m.div variants={fadeUpVariants}>
+          <m.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <Link
               href="/clientes"
-              prefetch={false}
-              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.1em] text-green-950 hover:text-green-800 transition-colors group"
+              className="inline-flex items-center gap-3 bg-stone-100 text-stone-800 px-8 py-4 rounded-full font-bold hover:bg-stone-200 transition-all duration-300 hover:shadow-md hover:-translate-y-1 group"
             >
-              Ver todos los proyectos
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              Ver todos los casos
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-teal-600" />
             </Link>
           </m.div>
-        </m.div>
+        </div>
 
-        {/* Case Study Cards */}
-        <m.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={sectionVariants}
-          className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14"
-        >
-          {CASE_STUDIES.map((study, index) => (
-            <m.div
-              key={study.id}
-              variants={cardVariants}
-              className="relative"
-            >
-              {/* Geometric frame decoration */}
-              <CardGeometry variant={index === 0 ? "left" : "right"} />
+        <div className="flex flex-col gap-24 lg:gap-32">
+          {CASE_STUDIES.map((study, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <div key={study.id} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+                
+                {/* Visual Side */}
+                <m.div 
+                  className={`lg:col-span-7 relative ${isEven ? 'lg:order-1' : 'lg:order-2'}`}
+                  initial={{ opacity: 0, scale: 0.95, y: 40 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                  <Link href={`/clientes#${study.id}`} className="group block relative w-full aspect-[4/3] rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden bg-stone-100 shadow-xl shadow-stone-200/40 border-[6px] border-white">
+                    <div className="absolute inset-0 bg-teal-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 mix-blend-overlay" />
+                    <LazyVideo
+                      src={study.videoSrc}
+                      ariaLabel={`Video del caso de ${study.title}`}
+                      className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                    />
+                    
+                    {/* Hover overlay badge */}
+                    <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                      <span className="bg-white/90 backdrop-blur-sm text-stone-900 font-bold px-6 py-3 rounded-full flex items-center gap-2 shadow-lg">
+                        Explorar Caso <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </div>
+                  </Link>
+                </m.div>
 
-              <Link href={`/clientes#${study.id}`} prefetch={false} className="group block relative z-10">
-                {/* Video Container */}
-                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-stone-200 shadow-lg">
-                  <LazyVideo
-                    src={study.videoSrc}
-                    ariaLabel={`Video del caso de ${study.title}`}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Subtle overlay on hover */}
-                  <div className="absolute inset-0 bg-green-950/10 group-hover:bg-transparent transition-colors duration-500" />
-
-                  {/* Client logo badge */}
-                  <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-sm">
-                    <Planet size={28} className="h-6 w-auto text-black" />
+                {/* Text Side */}
+                <m.div 
+                  className={`lg:col-span-5 flex flex-col justify-center ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
+                  initial={{ opacity: 0, x: isEven ? 40 : -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                >
+                  <div className="inline-flex mb-6">
+                    <span className="font-bold uppercase tracking-[0.15em] text-teal-600 bg-teal-50 px-4 py-1.5 rounded-full text-xs">
+                      {study.category}
+                    </span>
                   </div>
-                </div>
-
-                {/* Card Info */}
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-green-700 mb-2">
-                    {study.category}
+                  
+                  <Link href={`/clientes#${study.id}`} className="group inline-block">
+                    <h3 className="font-nunito font-extrabold text-4xl lg:text-5xl text-stone-800 mb-6 group-hover:text-teal-700 transition-colors">
+                      {study.title}
+                    </h3>
+                  </Link>
+                  
+                  <p className="font-medium text-lg lg:text-xl text-stone-600 leading-relaxed mb-8">
+                    {study.description}
                   </p>
-                  <h3 className="font-bricolage font-bold text-2xl text-green-950 group-hover:text-green-800 transition-colors">
-                    {study.title}
-                  </h3>
-                </div>
-              </Link>
-            </m.div>
-          ))}
-        </m.div>
+
+                  <div className="flex flex-wrap gap-4">
+                    {study.metrics.map((metric, i) => (
+                      <div key={i} className="bg-stone-50 border border-stone-100 rounded-2xl px-5 py-3">
+                        <span className="font-bold text-stone-800">{metric}</span>
+                      </div>
+                    ))}
+                  </div>
+                </m.div>
+
+              </div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );

@@ -2,453 +2,145 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Sparkles, Users, TrendingUp, Eye, Music } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import HeroSection from "@/components/ui/hero-section-9";
-import CollaboratorsSlider from "@/components/sections/home/CollaboratorsSlider";
+import { ArrowRight } from "lucide-react";
 import { LazyVideo } from "@/components/ui/lazy-video";
-import FloatingBackground from "@/components/ui/floating-background";
-import { Planet } from 'reicon-react';
-// Client Wrappers
-import { 
-  ClientesScrollController, 
-  BusinessRowWrapper, 
-  PhaseBlockWrapper 
-} from "@/components/ui/motion-wrappers";
 
-interface Tag {
-  label: string;
-  icon: React.ReactNode;
-}
+const MARQUEE_ITEMS = [
+  "Kairós", "Lumina Studio", "Nova Apparel", "Vertex Estate", "Ely la publicista",
+  "Kairós", "Lumina Studio", "Nova Apparel", "Vertex Estate", "Ely la publicista"
+];
 
-interface TextPhase {
-  tags: Tag[];
-  copy: React.ReactNode;
-  secondaryCopy?: string;
-  metrics?: {
-    value: string;
-    label: string;
-  }[];
-  subCopy?: string;
-}
-
-interface Business {
-  id: string;
-  name: string;
-  logo: string;
-  mediaType: "video" | "image";
-  mediaSrc: string;
-  bgColor: string;
-  theme?: "dark" | "light";
-  phases: TextPhase[];
-}
-
-const BUSINESSES: Business[] = [
+const BUSINESSES = [
   {
     id: "kairos",
     name: "Kairós",
-    logo: "/cases/logos/planet-outline.svg",
     mediaType: "video",
     mediaSrc: "/ely.mp4",
-    bgColor: "#FAF7F2",
-    phases: [
-      {
-        tags: [
-          { label: "Estrategia Digital", icon: <Sparkles className="w-3.5 h-3.5" /> }
-        ],
-        copy: "Diseñé una estrategia integral para Kairós, conectando su propuesta de bienestar con una audiencia premium.",
-        metrics: [
-          { value: "+120%", label: "crecimiento en reservas" },
-          { value: "+5 MIL", label: "nuevos seguidores" }
-        ],
-        subCopy: "Logrando un posicionamiento sólido en menos de 3 meses."
-      }
-    ]
+    bgColor: "bg-teal-50",
+    textColor: "text-teal-900",
+    btnColor: "bg-teal-700 hover:bg-teal-800 text-white",
+    copy: "Estrategia integral conectando su propuesta de bienestar con una audiencia premium.",
+    metrics: [{ value: "+120%", label: "Reservas" }, { value: "+5M", label: "Seguidores" }],
+    colSpan: "lg:col-span-12"
   },
   {
     id: "lumina",
     name: "Lumina Studio",
-    logo: "/cases/logos/planet-outline.svg",
     mediaType: "image",
     mediaSrc: "/cases/lumina.png",
-    bgColor: "#EAE8E4",
-    phases: [
-      {
-        tags: [
-          { label: "Community Management", icon: <Users className="w-3.5 h-3.5" /> }
-        ],
-        copy: "Fomenté la comunidad digital de Lumina con contenido interactivo que multiplicó su alcance orgánico."
-      },
-      {
-        tags: [
-          { label: "Content Creation", icon: <Music className="w-3.5 h-3.5" /> }
-        ],
-        copy: "Produje campañas visuales que capturan la esencia minimalista de la marca.",
-        metrics: [
-          { value: "+300", label: "leads calificados" }
-        ]
-      }
-    ]
+    bgColor: "bg-stone-100",
+    textColor: "text-stone-900",
+    btnColor: "bg-stone-800 hover:bg-stone-700 text-white",
+    copy: "Multiplicamos su alcance orgánico con campañas visuales.",
+    metrics: [{ value: "+300", label: "Leads" }],
+    colSpan: "lg:col-span-6"
   },
   {
     id: "nova",
     name: "Nova Apparel",
-    logo: "/cases/logos/planet-outline.svg",
     mediaType: "video",
     mediaSrc: "/ely.mp4",
-    bgColor: "#c7d6dcff",
-    phases: [
-      {
-        tags: [
-          { label: "Growth Marketing", icon: <TrendingUp className="w-3.5 h-3.5" /> }
-        ],
-        copy: "Estructuré el embudo de ventas de Nova, convirtiendo tráfico frío en clientes recurrentes mediante Meta Ads.",
-        metrics: [
-          { value: "3.5x", label: "retorno de inversión" },
-          { value: "+15K", label: "visitas mensuales" },
-          { value: "1 Mes", label: "de optimización" }
-        ]
-      }
-    ]
+    bgColor: "bg-rose-50",
+    textColor: "text-rose-900",
+    btnColor: "bg-rose-600 hover:bg-rose-700 text-white",
+    copy: "Embudo de ventas convirtiendo tráfico frío en clientes recurrentes.",
+    metrics: [{ value: "3.5x", label: "ROI" }],
+    colSpan: "lg:col-span-6"
   },
   {
     id: "vertex",
     name: "Vertex Estate",
-    logo: "/cases/logos/planet-outline.svg",
     mediaType: "image",
     mediaSrc: "/cases/vertex.png",
-    bgColor: "#F4F1ED",
-    phases: [
-      {
-        tags: [
-          { label: "Branding", icon: <Eye className="w-3.5 h-3.5" /> }
-        ],
-        copy: "Definí el rumbo visual y verbal de Vertex, construyendo una comunicación a la altura de su servicio.",
-        secondaryCopy: "Traduciendo procesos complejos a una imagen clara y profesional."
-      }
-    ]
+    bgColor: "bg-indigo-50",
+    textColor: "text-indigo-900",
+    btnColor: "bg-indigo-600 hover:bg-indigo-700 text-white",
+    copy: "Construyendo una comunicación a la altura de su servicio premium.",
+    metrics: [],
+    colSpan: "lg:col-span-12"
   }
 ];
 
-// Pre-calculate slots for scroll math
-const INTRO_SLOTS = 2; // Fase 0: Portada, Fase 1: Colaboradores
-let currentSlotCount = INTRO_SLOTS;
-const BUSINESSES_MAPPED = BUSINESSES.map(biz => {
-  const slotStart = currentSlotCount;
-  const slots = biz.phases.length;
-  currentSlotCount += slots;
-  return { ...biz, slotStart, slots };
-});
-
-const TOTAL_SLOTS = currentSlotCount;
-
 export default function Clientes() {
   return (
-    <>
-      {/* 1. Conventional Stack Layout for Mobile (block lg:hidden) */}
-      <section className="block lg:hidden pt-28 pb-16 bg-transparent">
-        <HeroSection
-          className="mb-16 !py-0"
-          title={<><span className="text-slate-500 text-sm font-semibold uppercase tracking-[0.25em] block mb-2 font-sans">Proyectos Recientes</span>Casos de Éxito</>}
-          subtitle="Descubre cómo he transformado visiones estratégicas en marcas líderes que conectan, inspiran y venden."
-          images={['/cases/715.jpg', '/cases/unilabor.jpg', '/ola.jpg']}
-          actions={[
-            { text: "Inicia tu proyecto", href: '/contacto', variant: 'default', className: "pointer-events-auto" }
-          ]}
-          stats={[
-            { value: "+5.3M", label: "Visualizaciones", icon: <Eye className="w-5 h-5 text-slate-600" /> },
-            { value: "+21K", label: "Interacciones", icon: <Users className="w-5 h-5 text-slate-600" /> }
-          ]}
-        />
-        
-        {/* Nuestros Colaboradores en Móvil */}
-        <div className="container mx-auto px-4 sm:px-6 mb-16 text-center">
-          <h2 className="font-bricolage font-extrabold text-2xl text-slate-900 tracking-tight mb-2">
-            Nuestros colaboradores
-          </h2>
-          <p className="text-slate-600 max-w-md mx-auto text-sm mb-8 leading-relaxed">
-            Las marcas y proyectos que han confiado en mi enfoque para destacar en el mercado premium.
-          </p>
-          <CollaboratorsSlider />
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-          <div className="flex flex-col gap-16">
-            {BUSINESSES_MAPPED.map((biz) => {
-              return (
-                <article key={biz.id} className="flex flex-col gap-6 bg-white p-6 rounded-3xl shadow-sm border border-stone-200/50">
-                  {/* Media container */}
-                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-stone-200 shadow-sm">
-                    {biz.mediaType === "video" ? (
-                      <LazyVideo
-                        src={biz.mediaSrc}
-                        ariaLabel={`Video de ${biz.name}`}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <Image
-                        src={biz.mediaSrc}
-                        alt={biz.name}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover"
-                      />
-                    )}
-                  </div>
-
-                  {/* Text Details Container */}
-                  <div className="flex flex-col gap-8">
-                    {/* Header */}
-                    <div className="flex items-center gap-5 border-b border-stone-100 pb-4">
-                      <div className="relative h-12 w-28 flex-shrink-0">
-                        <Planet size={48} className="w-full h-full text-black" />
-                      </div>
-                      <h3 className="font-bricolage font-extrabold text-2xl tracking-tight text-slate-900 border-l-2 border-slate-200 pl-5">
-                        {biz.name}
-                      </h3>
-                    </div>
-
-                    {/* Render all phases linearly on mobile */}
-                    <div className="flex flex-col gap-10">
-                      {biz.phases.map((phase, idx) => (
-                        <div key={idx} className="flex flex-col gap-4">
-                          <div className="flex flex-col gap-2">
-                            <p className="text-lg text-slate-800 leading-relaxed font-medium">
-                              {phase.copy}
-                            </p>
-                            {phase.secondaryCopy && (
-                              <p className="text-base text-slate-600 font-medium mt-1">
-                                {phase.secondaryCopy}
-                              </p>
-                            )}
-                          </div>
-
-                          <div className="flex flex-wrap gap-2">
-                            {phase.tags.map((tag, tagIdx) => {
-                              return (
-                                <span key={tagIdx} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
-                                  {tag.icon}
-                                  {tag.label}
-                                </span>
-                              );
-                            })}
-                          </div>
-
-                          {phase.metrics && (
-                            <div className="grid grid-cols-2 gap-4 mt-2">
-                              {phase.metrics.map((metric, i) => (
-                                <div key={i} className="flex flex-col bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                  <span className="font-bricolage font-bold text-2xl text-slate-900">
-                                    {metric.value}
-                                  </span>
-                                  <span className="text-[10px] text-slate-500 uppercase tracking-wider mt-1">
-                                    {metric.label}
-                                  </span>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {phase.subCopy && (
-                            <p className="text-xs text-slate-500 italic mt-2">
-                              {phase.subCopy}
-                            </p>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Pinned Sticky Scroll Layout for Desktop (hidden lg:block) */}
-      <ClientesScrollController 
-        totalSlots={TOTAL_SLOTS} 
-        businessesMapped={BUSINESSES_MAPPED.map(biz => ({
-          id: biz.id,
-          name: biz.name,
-          slotStart: biz.slotStart,
-          slots: biz.slots
-        }))}
-        floatingBg={<FloatingBackground />}
-        introHero={
-          <HeroSection
-            className="w-full"
-            title={<><span className="text-slate-500 text-2xl uppercase tracking-widest block mb-2 font-sans font-semibold">Proyectos Recientes</span>Casos de Éxito</>}
-            subtitle="Descubre cómo he transformado visiones estratégicas en marcas líderes que conectan, inspiran y venden."
-            images={['/cases/715.jpg', '/cases/unilabor.jpg', '/cases/715.jpg']}
-            actions={[
-              { text: "Inicia tu proyecto", href: '/contacto', variant: 'default', className: "pointer-events-auto" }
-            ]}
-            stats={[
-              { value: "+5.3M", label: "Visualizaciones", icon: <Eye className="w-5 h-5 text-slate-600" /> },
-              { value: "+21K", label: "Interacciones", icon: <Users className="w-5 h-5 text-slate-600" /> }
-            ]}
-          />
-        }
-        collabTitle={
-          <>
-            <h2 className="font-bricolage font-extrabold text-3xl lg:text-4xl text-slate-900 tracking-tight mb-4">
-              Nuestros colaboradores
-            </h2>
-            <p className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
-              Las marcas y proyectos que han confiado en mi enfoque para destacar en el mercado premium.
-            </p>
-          </>
-        }
-        collabSlider={<CollaboratorsSlider />}
-      >
-        {BUSINESSES_MAPPED.map((biz, index) => (
-          <BusinessRow 
-            key={biz.id} 
-            business={biz} 
-            index={index} 
-            totalBusinesses={BUSINESSES_MAPPED.length}
-          />
-        ))}
-      </ClientesScrollController>
-    </>
-  );
-}
-
-interface BusinessRowProps {
-  business: typeof BUSINESSES_MAPPED[0];
-  index: number;
-  totalBusinesses: number;
-}
-
-function BusinessRow({ business, index, totalBusinesses }: BusinessRowProps) {
-  return (
-    <BusinessRowWrapper 
-      slotStart={business.slotStart} 
-      slots={business.slots} 
-      isLast={index === totalBusinesses - 1}
-    >
-      <div className="grid grid-cols-12 gap-8 w-full items-center">
-        {/* Left Column: Text content */}
-        <div className="col-span-5 flex flex-col pointer-events-auto h-full justify-center">
-          
-          {/* Logo and Name (Persistent for the whole business duration) */}
-          <div className="flex items-center gap-6 mb-8 mt-4">
-             <div className="relative h-16 w-40 lg:h-20 lg:w-48 flex-shrink-0">
-               <Planet size={64} className="w-full h-full transition-all duration-500 text-black" />
-             </div>
-             <h3 className={`font-bricolage font-extrabold text-3xl lg:text-4xl tracking-tight border-l-2 pl-6 py-1 transition-colors duration-500 ${business.theme === 'dark' ? 'text-white border-white/20' : 'text-slate-900 border-slate-200'}`}>
-               {business.name}
-             </h3>
-          </div>
-          
-          {/* Phases Container - CSS Grid overlap ensures parent grows to tallest child */}
-          <div className="grid grid-cols-1 grid-rows-1 w-full">
-            {business.phases.map((phase, pIdx) => (
-              <PhaseBlock 
-                key={pIdx}
-                phase={phase}
-                pIdx={pIdx}
-                business={business}
-              />
-            ))}
-          </div>
-
-          {/* Button linking to full project page */}
-          <div className="mt-8">
-            <Link
-              href={`/clientes#${business.id}`}
-              prefetch={false}
-              className={`inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider transition-colors duration-500 group ${business.theme === 'dark' ? 'text-white hover:text-white/70' : 'text-slate-900 hover:text-slate-600'}`}
-            >
-              Ver caso completo
-              <span className="group-hover:translate-x-1 transition-transform inline-block">
-                →
-              </span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Right Column: Large Media Showcase (Persistent for whole business duration) */}
-        <div className="col-span-7 pl-8 pointer-events-auto h-full flex items-center">
-          <div className="relative w-full aspect-[16/10] rounded-[2rem] overflow-hidden bg-slate-200/50 shadow-2xl border border-slate-900/5">
-            {business.mediaType === "video" ? (
-              <LazyVideo
-                src={business.mediaSrc}
-                ariaLabel={`Video de ${business.name}`}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <Image
-                src={business.mediaSrc}
-                alt={`${business.name} caso`}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover"
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    </BusinessRowWrapper>
-  );
-}
-
-interface PhaseBlockProps {
-  phase: TextPhase;
-  pIdx: number;
-  business: typeof BUSINESSES_MAPPED[0];
-}
-
-function PhaseBlock({ phase, pIdx, business }: PhaseBlockProps) {
-  return (
-    <PhaseBlockWrapper 
-      slotStart={business.slotStart} 
-      phaseIndex={pIdx} 
-      totalPhases={business.phases.length}
-    >
-      <div className="flex flex-col gap-3">
-        <p className={`font-bricolage font-extrabold text-3xl xl:text-4xl leading-snug tracking-tight text-balance transition-colors duration-500 ${business.theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
-          {phase.copy}
-        </p>
-        {phase.secondaryCopy && (
-          <p className={`text-xl font-medium tracking-normal mt-2 transition-colors duration-500 ${business.theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>
-            {phase.secondaryCopy}
-          </p>
-        )}
-      </div>
-
-      <div className="flex flex-wrap gap-2">
-        {phase.tags.map((tag, idx) => {
-          return (
-            <span key={idx} className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border backdrop-blur-sm transition-colors duration-500 ${business.theme === 'dark' ? 'bg-white/10 border-white/20 text-white' : 'bg-white/60 border-slate-900/5 text-slate-800'}`}>
-              {tag.icon}
-              {tag.label}
-            </span>
-          );
-        })}
-      </div>
-
-      {phase.metrics && (
-        <div className={`grid grid-cols-2 gap-6 mt-auto pt-6 border-t transition-colors duration-500 ${business.theme === 'dark' ? 'border-white/20' : 'border-slate-900/10'}`}>
-          {phase.metrics.map((metric, i) => (
-            <div key={i} className="flex flex-col">
-              <span className={`font-bricolage font-bold text-3xl transition-colors duration-500 ${business.theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
-                {metric.value}
-              </span>
-              <span className={`text-xs uppercase tracking-wider transition-colors duration-500 ${business.theme === 'dark' ? 'text-slate-300' : 'text-slate-500'}`}>
-                {metric.label}
-              </span>
+    <div className="w-full bg-stone-50">
+      
+      {/* Soft Infinite Marquee */}
+      <div className="w-full overflow-hidden bg-white py-8 border-b border-stone-200 flex flex-nowrap whitespace-nowrap">
+        <div className="flex shrink-0 animate-[marquee_25s_linear_infinite] min-w-full items-center justify-around gap-16 px-8">
+          {MARQUEE_ITEMS.map((item, idx) => (
+            <div key={idx} className="flex shrink-0 items-center gap-16">
+              <span className="font-nunito font-bold text-3xl md:text-5xl text-stone-300 tracking-tight">{item}</span>
+              <span className="text-stone-200 text-3xl md:text-5xl font-light">+</span>
             </div>
           ))}
         </div>
-      )}
+        {/* Duplicate for seamless looping */}
+        <div className="flex shrink-0 animate-[marquee_25s_linear_infinite] min-w-full items-center justify-around gap-16 px-8" aria-hidden="true">
+          {MARQUEE_ITEMS.map((item, idx) => (
+            <div key={`dup-${idx}`} className="flex shrink-0 items-center gap-16">
+              <span className="font-nunito font-bold text-3xl md:text-5xl text-stone-300 tracking-tight">{item}</span>
+              <span className="text-stone-200 text-3xl md:text-5xl font-light">+</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
-      {phase.subCopy && (
-        <p className={`text-sm italic leading-relaxed transition-colors duration-500 ${business.theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
-          {phase.subCopy}
-        </p>
-      )}
-    </PhaseBlockWrapper>
+      <section className="py-24 lg:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          
+          <div className="mb-16 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+            <h2 className="font-nunito font-extrabold text-4xl md:text-5xl lg:text-6xl text-stone-800 leading-tight tracking-tight">
+              Casos de Éxito
+            </h2>
+            <p className="text-lg md:text-xl font-medium max-w-sm text-stone-500">
+              Visiones estratégicas transformadas en marcas líderes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            {BUSINESSES.map((biz) => (
+              <article key={biz.id} className={`flex flex-col md:flex-row rounded-[3rem] shadow-sm hover:shadow-md transition-all duration-300 border border-stone-100 overflow-hidden group ${biz.bgColor} ${biz.textColor} ${biz.colSpan}`}>
+                
+                {/* Media Side */}
+                <div className="w-full md:w-1/2 lg:w-3/5 overflow-hidden relative min-h-[300px]">
+                  {biz.mediaType === "video" ? (
+                    <LazyVideo src={biz.mediaSrc} ariaLabel={`Video de ${biz.name}`} className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700" />
+                  ) : (
+                    <Image src={biz.mediaSrc} alt={biz.name} fill className="object-cover transform group-hover:scale-105 transition-all duration-700" />
+                  )}
+                </div>
+
+                {/* Text Side */}
+                <div className="w-full md:w-1/2 lg:w-2/5 p-8 lg:p-12 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-nunito font-bold text-3xl md:text-4xl mb-4 tracking-tight">{biz.name}</h3>
+                    <p className="font-medium text-lg leading-relaxed opacity-80">{biz.copy}</p>
+                    
+                    {biz.metrics.length > 0 && (
+                      <div className="mt-8 flex gap-8">
+                        {biz.metrics.map((metric, i) => (
+                          <div key={i}>
+                            <span className="block font-nunito font-extrabold text-3xl">{metric.value}</span>
+                            <span className="text-sm font-medium uppercase tracking-widest opacity-70">{metric.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="mt-12">
+                    <Link href={`/clientes#${biz.id}`} className={`inline-flex items-center gap-3 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:shadow-md group/btn ${biz.btnColor}`}>
+                      Ver caso <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+        </div>
+      </section>
+    </div>
   );
 }
